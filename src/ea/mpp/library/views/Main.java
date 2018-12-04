@@ -23,32 +23,43 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
-		
+
 	}
-	
+
 	public void initRootLayout() {
-        try {
-            
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../views/root.fxml"));
-            root = (BorderPane) loader.load();
-            
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		try {
+
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../views/root.fxml"));
+			root = (BorderPane) loader.load();
+
+			// Show the scene containing the root layout.
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void initLogin() {
 		try {
-			 FXMLLoader loader = new FXMLLoader();
-	         loader.setLocation(Main.class.getResource("Login.fxml"));
-	         AnchorPane ap = (AnchorPane)loader.load();
-	         root.setCenter(ap);
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("Login.fxml"));
+			AnchorPane ap = (AnchorPane)loader.load();
+			root.setCenter(ap);
 		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void initSearchBook() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("Search.fxml"));
+			AnchorPane ap = (AnchorPane)loader.load();
+			root.setCenter(ap);
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
