@@ -1,4 +1,4 @@
-package ea.mpp.library;
+package ea.mpp.library.controllers;
 
 public class LibrarianController {
 
