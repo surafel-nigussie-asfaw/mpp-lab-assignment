@@ -65,14 +65,22 @@ public class BookInfo {
 	}
 	
 	public BookCopy getAvailableBook() {
-		BookCopy bookcopy = null;
 		for (BookCopy copy : bookCopies) {
 			if(copy.isAvailable()) {
-				bookcopy = copy;
 				copy.setAvailable(false);
+				return copy;
 			}
 		}
-		return bookcopy;
+		return null;
+	}
+	
+	public BookCopy checkAvailableBook() {
+		for (BookCopy copy : bookCopies) {
+			if(copy.isAvailable()) {
+				return copy;
+			}
+		}
+		return null;
 	}
 
 	public String getErrorMessage() {
@@ -83,5 +91,12 @@ public class BookInfo {
 		this.errorMessage = errorMessage;
 	}
 	
-	
+	public int getNumberOfBooksAvailable() {
+		int count = 0;
+		for (BookCopy bookCopy : bookCopies) {
+			if(bookCopy.isAvailable())
+				count++;
+		}
+		return count;
+	}
 }

@@ -6,8 +6,9 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.LibrerianController">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.LibrerianUIController">
    <children>
       <TabPane layoutY="40.0" prefHeight="558.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -23,15 +24,20 @@
                         <Label layoutX="28.0" layoutY="56.0" text="Member ID" />
                         <Label layoutX="52.0" layoutY="90.0" text="ISBN" />
                         <Button layoutX="201.0" layoutY="119.0" mnemonicParsing="false" onAction="#getBookInfo" text="Get" />
-                        <TextField fx:id="memberID" layoutX="94.0" layoutY="52.0" />
-                        <TextField fx:id="ISBN" layoutX="94.0" layoutY="86.0" />
+                        <TextField fx:id="memberID" layoutX="94.0" layoutY="52.0" text="1" />
+                        <TextField fx:id="ISBN" layoutX="94.0" layoutY="86.0" text="isbn" />
                         <AnchorPane fx:id="bookInfoAnchorPane" layoutX="306.0" layoutY="41.0" prefHeight="344.0" prefWidth="256.0">
                            <children>
-                              <Label fx:id="bookInfo" layoutX="9.0" layoutY="14.0" prefHeight="160.0" prefWidth="239.0" style="-fx-background-color: white;" visible="false" />
-                              <Button fx:id="checkout" layoutX="170.0" layoutY="183.0" mnemonicParsing="false" text="Checkout" visible="false" />
+                              <Label fx:id="bookInfo" layoutX="27.0" layoutY="65.0" prefHeight="109.0" prefWidth="196.0" style="-fx-background-color: white;" visible="false" />
+                              <Button fx:id="checkout" layoutX="170.0" layoutY="183.0" mnemonicParsing="false" onAction="#checkOutClicked" text="Checkout" visible="false" />
                            </children>
                         </AnchorPane>
-                        <Label fx:id="errorMessage" layoutX="106.0" layoutY="179.0" />
+                        <Label fx:id="errorMessage" layoutX="106.0" layoutY="179.0" textFill="#c60b0b" />
+                        <Label fx:id="success" layoutX="92.0" layoutY="248.0" textFill="#11a13f">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
             </content>
           </Tab>

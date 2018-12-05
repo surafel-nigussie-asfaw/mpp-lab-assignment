@@ -5,9 +5,16 @@ import java.util.Map;
 import java.util.Random;
 
 import ea.mpp.library.entities.LibraryMember;
+import ea.mpp.library.entities.Person;
 
 public class MemberDAO {
 	private static Map<Integer, LibraryMember> libraryMemberDataMap = new HashMap<Integer, LibraryMember>();
+	
+	public MemberDAO() {
+		libraryMemberDataMap.put(1, new LibraryMember(1, new Person("MemberF1", "MemberL1", "1209933")));
+		libraryMemberDataMap.put(2, new LibraryMember(2, new Person("MemberF2", "MemberL2", "1209933")));
+		libraryMemberDataMap.put(3, new LibraryMember(3, new Person("MemberF3", "MemberL3", "1209933")));
+	}
 	
 	public LibraryMember add(LibraryMember value) {
 		return libraryMemberDataMap.put(generateUniqueId(), value);
