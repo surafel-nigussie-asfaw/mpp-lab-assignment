@@ -23,4 +23,10 @@ public class BookInfoDAO {
 	public BookInfo delete(String title) {
 		return bookInfoDataMap.remove(title);
 	}
+	
+	public boolean exists(String ISBN) {
+		
+		return bookInfoDataMap.containsKey(ISBN);
+	}
+	
 }
