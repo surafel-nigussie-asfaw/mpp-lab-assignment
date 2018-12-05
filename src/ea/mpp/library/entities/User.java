@@ -8,12 +8,6 @@ public class User {
 	private Person person;
 	private List<Role> roles;
 	
-	public User(String userName, String password, Person person) {
-		this.userName = userName;
-		this.password = password;
-		this.person = person;
-	}
-	
 	public User(String userName, String password, Person person, List<Role> roles) {
 		this.userName = userName;
 		this.password = password;

@@ -9,6 +9,11 @@ public class BookCopy {
 		this.copyId = copyId;
 		this.bookInfo = bookInfo;
 		this.isAvailable = true;
+	}	
+	
+	public BookCopy(int copyId) {
+		this.copyId = copyId;
+		this.isAvailable = true;
 	}
 
 	public int getCopyId() {
