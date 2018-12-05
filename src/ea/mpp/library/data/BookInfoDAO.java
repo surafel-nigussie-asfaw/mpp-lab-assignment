@@ -8,19 +8,19 @@ import ea.mpp.library.entities.BookInfo;
 public class BookInfoDAO {
 	private Map<String, BookInfo> bookInfoDataMap = new HashMap<String, BookInfo>();
 	
-	public BookInfo add(BookInfo value) {
-		return bookInfoDataMap.put(value.getTitle(), value);
+	public BookInfo add(String iSBN, BookInfo value) {
+		return bookInfoDataMap.put(iSBN, value);
 	}
 
-	public BookInfo update(BookInfo value) {
-		return bookInfoDataMap.put(value.getTitle(), value);
+	public BookInfo update(String iSBN, BookInfo value) {
+		return bookInfoDataMap.put(iSBN, value);
 	}
 
-	public BookInfo get(String title) {
-		return bookInfoDataMap.get(title);
+	public BookInfo get(String iSBN) {
+		return bookInfoDataMap.get(iSBN);
 	}
 
-	public BookInfo delete(String title) {
-		return bookInfoDataMap.remove(title);
+	public BookInfo delete(String iSBN) {
+		return bookInfoDataMap.remove(iSBN);
 	}
 }

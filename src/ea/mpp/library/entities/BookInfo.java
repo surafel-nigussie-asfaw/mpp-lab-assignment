@@ -8,6 +8,7 @@ public class BookInfo {
 	private String ISBN;
 	private List<Author> authors;
 	private List<BookCopy> bookCopies;
+	private String errorMessage;
 	
 	public BookInfo(int maxLeaseDays, String title, String iSBN) {
 		this.maxLeaseDays = maxLeaseDays;
@@ -18,14 +19,9 @@ public class BookInfo {
 	public BookInfo(int maxLeaseDays, String title, String iSBN, List<Author> authors, List<BookCopy> bookCopies) {
 		this.maxLeaseDays = maxLeaseDays;
 		this.title = title;
-		ISBN = iSBN;
+		this.ISBN = iSBN;
 		this.authors = authors;
 		this.bookCopies = bookCopies;
-	}
-
-	public boolean isAvailable() {
-		//TODO: implementation
-		return false;
 	}
 
 	public int getMaxLeaseDays() {
@@ -49,7 +45,7 @@ public class BookInfo {
 	}
 
 	public void setISBN(String iSBN) {
-		ISBN = iSBN;
+		this.ISBN = iSBN;
 	}
 
 	public List<Author> getAuthors() {
@@ -59,5 +55,33 @@ public class BookInfo {
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
 	}
+
+	public List<BookCopy> getBookCopies() {
+		return bookCopies;
+	}
+
+	public void setBookCopies(List<BookCopy> bookCopies) {
+		this.bookCopies = bookCopies;
+	}
+	
+	public BookCopy getAvailableBook() {
+		BookCopy bookcopy = null;
+		for (BookCopy copy : bookCopies) {
+			if(copy.isAvailable()) {
+				bookcopy = copy;
+				copy.setAvailable(false);
+			}
+		}
+		return bookcopy;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+	
 	
 }

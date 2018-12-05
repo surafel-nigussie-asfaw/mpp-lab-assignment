@@ -1,5 +1,6 @@
 package ea.mpp.library.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CheckOutRecord {
@@ -8,6 +9,7 @@ public class CheckOutRecord {
 	
 	public CheckOutRecord(LibraryMember libraryMember) {
 		this.libraryMember = libraryMember;
+		this.checkOutEntries = new ArrayList<>();
 	}
 
 	public LibraryMember getLibraryMember() {
