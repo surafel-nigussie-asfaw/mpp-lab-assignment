@@ -53,15 +53,6 @@ public class Main extends Application {
 		}
 	}
 
-	public void initSearchBook() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("Search.fxml"));
-			AnchorPane ap = (AnchorPane)loader.load();
-			root.setCenter(ap);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	
 }
 

@@ -21,11 +21,11 @@ public class UserController {
 	
 	public static UserController getInstance() {return instance;}
 	
-	public boolean login(String username, String password) {
+	public User login(String username, String password) {
 		User user = userDAO.get(username);
 		if(user != null && user.getPassword().equals(password)) {
-			return true;
+			return user;
 		}
-		return false;
+		return null;
 	}
 }
