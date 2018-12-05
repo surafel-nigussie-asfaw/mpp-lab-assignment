@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import ea.mpp.library.controllers.LibrarianController;
 import ea.mpp.library.entities.BookInfo;
+import ea.mpp.library.entities.CheckOutRecord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -64,10 +65,10 @@ public class LibrerianUIController implements Initializable  {
 	
 	@FXML
 	public void checkOutClicked(ActionEvent event) {
-		BookInfo bookInfoObj = lc.checkOut(Integer.valueOf(memberID.getText()), ISBN.getText());
+		CheckOutRecord record = lc.checkOut(Integer.valueOf(memberID.getText()), ISBN.getText());
 		bookInfo.setVisible(false);
 		checkout.setVisible(false);
-		success.setText(bookInfoObj.getErrorMessage());
+		success.setText(record.getErrorMessage());
 	}
 	
 	public LibrerianUIController(){

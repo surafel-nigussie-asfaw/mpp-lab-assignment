@@ -6,6 +6,7 @@ import java.util.List;
 public class CheckOutRecord {
 	private LibraryMember libraryMember;
 	private List<CheckOutEntry> checkOutEntries;
+	private String errorMessage;
 	
 	public CheckOutRecord(LibraryMember libraryMember) {
 		this.libraryMember = libraryMember;
@@ -26,6 +27,14 @@ public class CheckOutRecord {
 
 	public void setCheckOutEntries(List<CheckOutEntry> checkOutEntries) {
 		this.checkOutEntries = checkOutEntries;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 	
 	

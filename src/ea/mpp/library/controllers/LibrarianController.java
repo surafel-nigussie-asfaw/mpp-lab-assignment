@@ -50,7 +50,7 @@ public class LibrarianController {
 		return bookInfo;
 	}
 	
-	public BookInfo checkOut(int libraryMemberId, String iSBN) {
+	public CheckOutRecord checkOut(int libraryMemberId, String iSBN) {
 		//check for member
 		LibraryMember libraryMember = memberDAO.get(libraryMemberId);
 		
@@ -70,13 +70,14 @@ public class LibrarianController {
 		if(checkOutRecord != null){
 			checkOutRecord.getCheckOutEntries().add(checkOutEntry);
 			checkOutRecordDAO.update(libraryMember.getLibraryMemberId(), checkOutRecord);
+			checkOutRecord.setErrorMessage("Sucessfully checked out!");
+			return checkOutRecord;
 		} else {
 			CheckOutRecord newCheckOutRecord = new CheckOutRecord(libraryMember);
 			newCheckOutRecord.getCheckOutEntries().add(checkOutEntry);
 			checkOutRecordDAO.add(libraryMember.getLibraryMemberId(), newCheckOutRecord);
+			newCheckOutRecord.setErrorMessage("Sucessfully checked out!");
+			return newCheckOutRecord;
 		} 
-		
-		bookInfo.setErrorMessage("Sucessfully checked out!");
-		return bookInfo;
 	}
 }
