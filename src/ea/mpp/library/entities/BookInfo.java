@@ -24,8 +24,11 @@ public class BookInfo {
 	}
 
 	public boolean isAvailable() {
-		//TODO: implementation
-		return false;
+		if(bookCopies.size() > 0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	public int getMaxLeaseDays() {
@@ -58,6 +61,14 @@ public class BookInfo {
 
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
+	}
+
+	public List<BookCopy> getBookCopies() {
+		return bookCopies;
+	}
+
+	public void setBookCopies(List<BookCopy> bookCopies) {
+		this.bookCopies = bookCopies;
 	}
 	
 }
