@@ -8,19 +8,19 @@ import ea.mpp.library.entities.LibraryMember;
 public class MemberDAO {
 	private Map<Integer, LibraryMember> libraryMemberDataMap = new HashMap<Integer, LibraryMember>();
 	
-	public LibraryMember add(Integer key, LibraryMember value) {
-		return libraryMemberDataMap.put(key, value);
+	public LibraryMember add(LibraryMember value) {
+		return libraryMemberDataMap.put(generateUniqueId(), value);
 	}
 
-	public LibraryMember update(Integer key, LibraryMember value) {
-		return libraryMemberDataMap.put(key, value);
+	public LibraryMember update(Integer memberId, LibraryMember value) {
+		return libraryMemberDataMap.put(memberId, value);
 	}
 
-	public LibraryMember get(Integer key) {
-		return libraryMemberDataMap.get(key);
+	public LibraryMember get(Integer memberId) {
+		return libraryMemberDataMap.get(memberId);
 	}
 
-	public LibraryMember delete(Integer key) {
-		return libraryMemberDataMap.remove(key);
+	public LibraryMember delete(Integer memberId) {
+		return libraryMemberDataMap.remove(memberId);
 	}
 }
