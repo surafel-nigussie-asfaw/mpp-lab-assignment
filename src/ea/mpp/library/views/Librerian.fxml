@@ -4,29 +4,49 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.LibrerianUIController">
+<AnchorPane prefHeight="494.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.LibrerianUIController">
    <children>
-      <TabPane layoutY="40.0" prefHeight="558.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="40.0" prefHeight="441.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Checkin">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="43.0" layoutY="33.0" text="Member ID" />
+                        <Label layoutX="73.0" layoutY="62.0" text="ISBN" />
+                        <Label layoutX="61.0" layoutY="102.0" text="Copy ID" />
+                        <TextField fx:id="memberID2" layoutX="121.0" layoutY="21.0" />
+                        <TextField fx:id="ISBN2" layoutX="121.0" layoutY="58.0" />
+                        <TextField fx:id="copyID2" layoutX="121.0" layoutY="90.0" />
+                        <Button layoutX="212.0" layoutY="125.0" mnemonicParsing="false" onAction="#checkinClicked" text="CheckIn" />
+                        <TableView fx:id="table2" layoutX="2.0" layoutY="206.0" prefHeight="217.0" prefWidth="593.0">
+                          <columns>
+                            <TableColumn fx:id="dueDate2" prefWidth="220.0" text="Due Date" />
+                            <TableColumn fx:id="dateOfCheckOut2" prefWidth="202.0" text="Date Of Checkout" />
+                              <TableColumn fx:id="bookCopy2" prefWidth="177.0" text="Book Copy" />
+                          </columns>
+                        </TableView>
+                        <Label fx:id="errorMessage2" layoutX="131.0" layoutY="162.0" textFill="RED" />
+                        <Label fx:id="success2" layoutX="168.0" layoutY="162.0" textFill="#3da151" />
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Checkout">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="482.0" prefWidth="600.0">
                      <children>
                         <Label layoutX="28.0" layoutY="56.0" text="Member ID" />
                         <Label layoutX="52.0" layoutY="90.0" text="ISBN" />
                         <Button layoutX="201.0" layoutY="119.0" mnemonicParsing="false" onAction="#getBookInfo" text="Get" />
                         <TextField fx:id="memberID" layoutX="94.0" layoutY="52.0" text="1" />
                         <TextField fx:id="ISBN" layoutX="94.0" layoutY="86.0" text="isbn" />
-                        <AnchorPane fx:id="bookInfoAnchorPane" layoutX="306.0" layoutY="41.0" prefHeight="344.0" prefWidth="256.0">
+                        <AnchorPane fx:id="bookInfoAnchorPane" layoutX="300.0" layoutY="14.0" prefHeight="207.0" prefWidth="256.0">
                            <children>
                               <Label fx:id="bookInfo" layoutX="27.0" layoutY="65.0" prefHeight="109.0" prefWidth="196.0" style="-fx-background-color: white;" visible="false" />
                               <Button fx:id="checkout" layoutX="170.0" layoutY="183.0" mnemonicParsing="false" onAction="#checkOutClicked" text="Checkout" visible="false" />
@@ -38,6 +58,13 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
+                        <TableView fx:id="table" layoutX="5.0" layoutY="228.0" prefHeight="177.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="228.0">
+                          <columns>
+                            <TableColumn fx:id="dateOfCheckOut" prefWidth="212.0" text="Date of checkout" />
+                            <TableColumn fx:id="dueDate" prefWidth="202.0" text="Due Date" />
+                              <TableColumn fx:id="bookCopy" prefWidth="200.0" resizable="false" text="Book Copy" />
+                          </columns>
+                        </TableView>
                      </children></AnchorPane>
             </content>
           </Tab>

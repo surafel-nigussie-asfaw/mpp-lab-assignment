@@ -12,13 +12,13 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LoginUIController {
-	private Stage primaryStage;
-	
+		
 	@FXML
 	Button login;
 	
@@ -26,7 +26,7 @@ public class LoginUIController {
 	TextField username;
 	
 	@FXML
-	TextField password;
+	PasswordField password;
 	
 	@FXML
 	Label errorMessage;
