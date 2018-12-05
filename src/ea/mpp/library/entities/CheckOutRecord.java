@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CheckOutRecord {
 	private LibraryMember libraryMember;
-	private List<CheckOutEntries> checkOutEntries;
+	private List<CheckOutEntry> checkOutEntries;
 	
 	public CheckOutRecord(LibraryMember libraryMember) {
 		this.libraryMember = libraryMember;
@@ -18,11 +18,11 @@ public class CheckOutRecord {
 		this.libraryMember = libraryMember;
 	}
 
-	public List<CheckOutEntries> getCheckOutEntries() {
+	public List<CheckOutEntry> getCheckOutEntries() {
 		return checkOutEntries;
 	}
 
-	public void setCheckOutEntries(List<CheckOutEntries> checkOutEntries) {
+	public void setCheckOutEntries(List<CheckOutEntry> checkOutEntries) {
 		this.checkOutEntries = checkOutEntries;
 	}
 	
