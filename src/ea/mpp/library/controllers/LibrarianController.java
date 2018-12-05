@@ -23,28 +23,33 @@ public class LibrarianController {
 	
 	public static LibrarianController getInstance() {return instance;}
 	
-	public String checkOut(int libraryMemberId, Date dueDate, String iSBN) {
+	public BookInfo checkOut(int libraryMemberId, String iSBN) {
+		//dummy data
+		BookInfo bookInfo = new BookInfo(0, "", "");
+		
 		//check for member
 		LibraryMember libraryMember = memberDAO.get(libraryMemberId);
 		if(libraryMember == null) {
-			return "Memeber doesn't exist.";
+			bookInfo.setErrorMessage("Memeber doesn't exist.");
+			return bookInfo;
 		}
 		
 		//check if there is available book
-		BookInfo bookInfo = bookInfoDAO.get(iSBN);
+		bookInfo = bookInfoDAO.get(iSBN);
 		BookCopy bookCopy;
 		if(bookInfo != null) {
 			bookCopy = bookInfo.getAvailableBook();
 			bookInfoDAO.update(iSBN, bookInfo);
 			if(bookCopy == null){
-				return "We dont have any book available.";
+				bookInfo.setErrorMessage("We dont have any book available.");
 			}
 		}else {
-			return "We don't have the book.";
+			bookInfo.setErrorMessage("We don't have the book.");
+			return bookInfo;
 		}
 		
 		//create checkout entry
-		CheckOutEntry checkOutEntry = new CheckOutEntry(new Date(), dueDate, bookCopy);
+		CheckOutEntry checkOutEntry = new CheckOutEntry(new Date(), /**/new Date(), bookCopy);
 		
 		//get record by member id
 		CheckOutRecord checkOutRecord = checkOutRecordDAO.get(libraryMember.getLibraryMemberId());
@@ -59,6 +64,7 @@ public class LibrarianController {
 			checkOutRecordDAO.add(libraryMember.getLibraryMemberId(), newCheckOutRecord);
 		} 
 		
-		return "Check Our Successful";
+		bookInfo.setErrorMessage("Check Out Successful");
+		return bookInfo;
 	}
 }

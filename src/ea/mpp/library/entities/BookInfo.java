@@ -8,6 +8,7 @@ public class BookInfo {
 	private String ISBN;
 	private List<Author> authors;
 	private List<BookCopy> bookCopies;
+	private String errorMessage;
 	
 	public BookInfo(int maxLeaseDays, String title, String iSBN) {
 		this.maxLeaseDays = maxLeaseDays;
@@ -73,4 +74,14 @@ public class BookInfo {
 		}
 		return bookcopy;
 	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+	
+	
 }
