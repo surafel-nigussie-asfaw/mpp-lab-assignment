@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" padding="$x1" prefHeight="499.0" prefWidth="653.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="653.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <BorderPane prefHeight="499.0" prefWidth="653.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <bottom>
+            <HBox alignment="CENTER_RIGHT" disable="false" fillHeight="true" prefHeight="54.009999999999984" prefWidth="223.0" spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
+              <children>
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" text="Cancel" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="118.0" text="Next" textAlignment="LEFT" HBox.hgrow="ALWAYS" />
+              </children>
+              <BorderPane.margin>
+                <Insets right="10.0" />
+              </BorderPane.margin>
+            </HBox>
+          </bottom>
+          <center>
+            <Pane prefHeight="410.0" prefWidth="453.0">
+              <children>
+                <VBox layoutX="25.0" layoutY="67.0" prefHeight="341.0" prefWidth="312.0">
+                  <children>
+                    <Pane prefHeight="66.0" prefWidth="312.0">
+                      <children>
+                        <TextArea layoutX="7.0" layoutY="25.0" prefHeight="28.0" prefWidth="300.0" wrapText="true" />
+                        <Label layoutX="7.0" layoutY="9.0" prefWidth="64.0" text="Title" />
+                      </children>
+                    </Pane>
+                    <Pane prefHeight="66.0" prefWidth="312.0">
+                      <children>
+                        <TextArea layoutX="7.0" layoutY="25.0" prefHeight="28.0" prefWidth="300.0" wrapText="true" />
+                        <Label layoutX="7.0" layoutY="6.0" text="ISBN" />
+                      </children>
+                    </Pane>
+                    <Pane prefHeight="66.0" prefWidth="312.0">
+                      <children>
+                        <TextArea layoutX="7.0" layoutY="25.0" prefHeight="28.0" prefWidth="300.0" wrapText="true" />
+                        <Label layoutX="7.0" layoutY="6.0" text="Lease days" />
+                      </children>
+                    </Pane>
+                    <Pane prefHeight="143.0" prefWidth="312.0" />
+                  </children>
+                </VBox>
+              </children>
+              <padding>
+                <Insets fx:id="x1" />
+              </padding>
+            </Pane>
+          </center>
+        </BorderPane>
+      </children>
+    </AnchorPane>
+  </children>
+</AnchorPane>
