@@ -3,10 +3,12 @@ package ea.mpp.library.entities;
 public class BookCopy {
 	private int copyId;
 	private BookInfo bookInfo;
+	private boolean isAvailable;
 	
 	public BookCopy(int copyId, BookInfo bookInfo) {
 		this.copyId = copyId;
 		this.bookInfo = bookInfo;
+		this.isAvailable = true;
 	}
 
 	public int getCopyId() {
@@ -24,5 +26,13 @@ public class BookCopy {
 	public void setBookInfo(BookInfo bookInfo) {
 		this.bookInfo = bookInfo;
 	}
-	
+
+	public boolean isAvailable() {
+		return isAvailable;
+	}
+
+	public void setAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+
 }
