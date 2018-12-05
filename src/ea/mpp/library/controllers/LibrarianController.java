@@ -7,6 +7,7 @@ import ea.mpp.library.data.BookInfoDAO;
 import ea.mpp.library.data.CheckOutRecordDAO;
 import ea.mpp.library.data.MemberDAO;
 import ea.mpp.library.entities.BookCopy;
+import ea.mpp.library.entities.BookInfo;
 import ea.mpp.library.entities.CheckOutEntry;
 import ea.mpp.library.entities.CheckOutRecord;
 import ea.mpp.library.entities.LibraryMember;
@@ -17,11 +18,11 @@ public class LibrarianController {
 	private MemberDAO memberDAO = new MemberDAO();
 	private BookInfoDAO bookInfoDAO = new BookInfoDAO();
 	private CheckOutRecordDAO checkOutRecordDAO = new CheckOutRecordDAO();
-	
+
 	private LibrarianController() {}
-	
+
 	public static LibrarianController getInstance() {return instance;}
-	
+
 	public boolean checkOut(LibraryMember libraryMember, Date dateOfCheckOut, Date dueDate, BookCopy bookCopy) {
 		//create entry
 		CheckOutEntry checkOutEntry = new CheckOutEntry(dateOfCheckOut, dueDate, bookCopy);
@@ -34,4 +35,9 @@ public class LibrarianController {
 		//validate
 		return true;
 	}
+
+	public List<BookInfo> searchBookByTitle(String text) {
+		return bookInfoDAO.searchBooksByTitle(text);
+	}
+
 }
