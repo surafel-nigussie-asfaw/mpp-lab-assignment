@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="1040.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ea.mpp.library.views.UIAuthorController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0000999999975" prefWidth="1040.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ea.mpp.library.views.UIAddAuthor">
   <children>
     <BorderPane prefHeight="749.0" prefWidth="777.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <bottom>
@@ -33,7 +33,7 @@
                       <content>
                         <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="565.0" prefWidth="689.0">
                           <children>
-                            <GridPane hgap="10.0" layoutX="15.0" layoutY="14.0" prefHeight="359.0" prefWidth="661.0">
+                            <GridPane hgap="10.0" layoutX="15.0" layoutY="14.0" prefHeight="300.0" prefWidth="661.0">
                               <children>
                                 <VBox prefHeight="120.0" prefWidth="100.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                   <children>
@@ -52,43 +52,43 @@
                                 <VBox prefHeight="120.0" prefWidth="100.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                   <children>
                                     <Label text="First Name" />
-                                    <TextField fx:id="firstNameEdit" prefHeight="40.0" prefWidth="307.0" />
+                                    <TextField id="firstNameEdit" fx:id="firstNameField" prefHeight="40.0" prefWidth="307.0" />
                                   </children>
                                 </VBox>
                                 <VBox prefHeight="120.0" prefWidth="100.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
                                   <children>
                                     <Label text="Phone Number" />
-                                    <TextField fx:id="phoneNumberEdit" prefHeight="40.0" prefWidth="307.0" />
+                                    <TextField id="phoneNumberEdit" fx:id="phoneNumberField" prefHeight="40.0" prefWidth="307.0" />
                                   </children>
                                 </VBox>
                                 <VBox prefHeight="120.0" prefWidth="100.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
                                   <children>
                                     <Label text="Street" />
-                                    <TextField fx:id="streetEdit" prefHeight="40.0" prefWidth="307.0" />
+                                    <TextField id="streetEdit" fx:id="streetField" prefHeight="40.0" prefWidth="307.0" />
                                   </children>
                                 </VBox>
                                 <VBox prefHeight="120.0" prefWidth="100.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
                                   <children>
                                     <Label text="State" />
-                                    <TextField fx:id="stateEdit" prefHeight="40.0" prefWidth="257.0" />
+                                    <TextField id="stateEdit" fx:id="stateField" prefHeight="40.0" prefWidth="257.0" />
                                   </children>
                                 </VBox>
                                 <VBox prefHeight="150.0" prefWidth="307.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                   <children>
                                     <Label text="Last Name" />
-                                    <TextField fx:id="lastNameEdit" prefHeight="40.0" prefWidth="257.0" />
+                                    <TextField id="lastNameEdit" fx:id="lastNameField" prefHeight="40.0" prefWidth="257.0" />
                                   </children>
                                 </VBox>
                                 <VBox prefHeight="150.0" prefWidth="307.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                   <children>
                                     <Label text="Zip Code" />
-                                    <TextField fx:id="zipCodeEdit" prefHeight="40.0" prefWidth="257.0" />
+                                    <TextField id="zipCodeEdit" fx:id="zipCodeField" prefHeight="40.0" prefWidth="257.0" />
                                   </children>
                                 </VBox>
                                 <VBox prefHeight="150.0" prefWidth="307.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                   <children>
                                     <Label text="City" />
-                                    <TextField id="stateEdit" fx:id="cityEdit" prefHeight="40.0" prefWidth="257.0" />
+                                    <TextField id="stateEdit" fx:id="cityField" prefHeight="40.0" prefWidth="257.0" />
                                   </children>
                                 </VBox>
                               </children>
@@ -104,13 +104,13 @@
                                 <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                             </GridPane>
-                            <VBox layoutX="14.0" layoutY="374.0" prefHeight="147.0" prefWidth="325.0">
+                            <VBox layoutX="14.0" layoutY="324.0" prefHeight="147.0" prefWidth="325.0">
                               <children>
                                 <Label text="Biography" />
-                                <TextArea fx:id="biographyEdit" prefHeight="113.0" prefWidth="323.0" wrapText="true" />
+                                <TextArea id="biographyEdit" fx:id="biographpyField" prefHeight="113.0" prefWidth="323.0" wrapText="true" />
                               </children>
                             </VBox>
-                            <Button fx:id="addButton" layoutX="499.0" layoutY="457.0" mnemonicParsing="false" prefHeight="49.951171875" prefWidth="176.0" text="Add" textOverrun="WORD_ELLIPSIS" />
+                            <Button fx:id="addButton" layoutX="499.0" layoutY="403.0" mnemonicParsing="false" prefHeight="49.951171875" prefWidth="176.0" text="Add" textOverrun="WORD_ELLIPSIS" />
                           </children>
                         </AnchorPane>
                       </content>
@@ -127,7 +127,7 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="747.0" prefWidth="463.0">
               <children>
                 <Label layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="164.0" text="Selected Authors" />
-                <ListView editable="false" layoutX="14.0" layoutY="43.0" orientation="VERTICAL" prefHeight="429.0" prefWidth="315.0" />
+                <ListView fx:id="selectedAuthorsView" editable="false" layoutX="14.0" layoutY="43.0" orientation="VERTICAL" prefHeight="429.0" prefWidth="315.0" />
               </children>
             </AnchorPane>
           </items>
