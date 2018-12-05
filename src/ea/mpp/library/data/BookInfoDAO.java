@@ -12,12 +12,12 @@ public class BookInfoDAO {
 	
 	private Map<String, BookInfo> bookInfoDataMap = new HashMap<String, BookInfo>();
 	
-	public BookInfo add(String title, BookInfo value) {
-		return bookInfoDataMap.put(title, value);
+	public BookInfo add(BookInfo value) {
+		return bookInfoDataMap.put(value.getTitle(), value);
 	}
 
-	public BookInfo update(String title, BookInfo value) {
-		return bookInfoDataMap.put(title, value);
+	public BookInfo update(BookInfo value) {
+		return bookInfoDataMap.put(value.getTitle(), value);
 	}
 
 	public BookInfo get(String title) {
@@ -49,4 +49,9 @@ public class BookInfoDAO {
 			}
 		};
 	}
+
+	public boolean bookExists(String ISBN) {
+		return bookInfoDataMap.containsKey(ISBN);
+	}
+	
 }
