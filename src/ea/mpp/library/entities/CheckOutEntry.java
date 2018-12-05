@@ -2,12 +2,12 @@ package ea.mpp.library.entities;
 
 import java.util.Date;
 
-public class CheckOutEntries {
+public class CheckOutEntry {
 	private Date dateOfCheckOut;
 	private Date dueDate;
 	private BookCopy bookCopy;
 	
-	public CheckOutEntries(Date dateOfCheckOut, Date dueDate, BookCopy bookCopy) {
+	public CheckOutEntry(Date dateOfCheckOut, Date dueDate, BookCopy bookCopy) {
 		this.dateOfCheckOut = dateOfCheckOut;
 		this.dueDate = dueDate;
 		this.bookCopy = bookCopy;
