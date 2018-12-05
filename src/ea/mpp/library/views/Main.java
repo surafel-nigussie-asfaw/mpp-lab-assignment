@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -18,7 +19,8 @@ public class Main extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Library System");
 		initRootLayout();
-		initLogin();
+//		initLogin();
+		initLibraryMember();
 	}
 
 	public static void main(String[] args) {
@@ -57,6 +59,17 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("Search.fxml"));
+			AnchorPane ap = (AnchorPane)loader.load();
+			root.setCenter(ap);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initLibraryMember() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("library-member.fxml"));
 			AnchorPane ap = (AnchorPane)loader.load();
 			root.setCenter(ap);
 		} catch (IOException e) {

@@ -36,7 +36,7 @@ public class AdminController {
 	 * @return
 	 */
 	public LibraryMember addLibraryMember(Person personDetails) {
-		Integer libraryMemberId = memberDAO.generateUniqueId();
+		Integer libraryMemberId = MemberDAO.generateUniqueId();
 		LibraryMember member = new LibraryMember(libraryMemberId, personDetails);
 		
 		memberDAO.add(libraryMemberId, member);
