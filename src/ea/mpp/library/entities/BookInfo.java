@@ -82,6 +82,14 @@ public class BookInfo {
 		}
 		return null;
 	}
+	
+	public void returnBookCopy(int copyId) {
+		for (BookCopy bookCopy : bookCopies) {
+			if (bookCopy.getCopyId() == copyId) {
+				bookCopy.setAvailable(true);
+			}
+		}
+	}
 
 	public String getErrorMessage() {
 		return errorMessage;

@@ -58,7 +58,6 @@ public class LibrarianController {
 		BookInfo bookInfo = bookInfoDAO.get(iSBN);
 		BookCopy bookCopy = bookInfo.getAvailableBook();
 		bookInfoDAO.update(iSBN, bookInfo);
-		BookInfo _bookInfo = bookInfoDAO.get(iSBN);
 		
 		//create checkout entry
 		CheckOutEntry checkOutEntry = new CheckOutEntry(new Date(), new Date(), bookCopy);
@@ -79,5 +78,40 @@ public class LibrarianController {
 			newCheckOutRecord.setErrorMessage("Sucessfully checked out!");
 			return newCheckOutRecord;
 		} 
+	}
+
+	public CheckOutRecord checkIn(int libraryMemberId, String iSBN, int bookCopyId) {
+		//does member exist
+		LibraryMember libraryMember = memberDAO.get(libraryMemberId);
+		if(libraryMember == null) {
+			CheckOutRecord record = new CheckOutRecord(null);
+			record.setErrorMessage("Memeber doesn't exist.");
+			return record;
+		}
+		
+		//check for member record
+		CheckOutRecord record = checkOutRecordDAO.get(libraryMemberId);
+		if(record == null) {
+			record = new CheckOutRecord(null);
+			record.setErrorMessage("Memeber has no checkout record.");
+			return record;
+		} else {
+			//member has record, update book info
+			for (CheckOutEntry entry : record.getCheckOutEntries()) {
+				if(entry.getBookCopy().getCopyId() == bookCopyId) {
+					//update book info 
+					BookInfo bookInfo = bookInfoDAO.get(iSBN);
+					bookInfo.returnBookCopy(bookCopyId);
+					bookInfoDAO.update(iSBN, bookInfo);
+					//return record
+					return record;
+				} else {
+					record = new CheckOutRecord(null);
+					record.setErrorMessage("No check out record for book.");
+					return record;
+				}
+			}
+		}
+		return null;
 	}
 }
