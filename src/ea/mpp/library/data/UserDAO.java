@@ -3,25 +3,31 @@ package ea.mpp.library.data;
 import java.util.HashMap;
 import java.util.Map;
 
+import ea.mpp.library.entities.Person;
 import ea.mpp.library.entities.User;
 
 public class UserDAO {
-	private Map<Integer, User> userDataMap = new HashMap<Integer, User>();
+	private Map<String, User> userDataMap = new HashMap<String, User>();
 	
-	public User add(Integer key, User value) {
-		return userDataMap.put(key, value);
+	public UserDAO() {
+		userDataMap.put("a", new User("a","abc", new Person("Abebe", "Belay", "555-6666")));
+		userDataMap.put("b", new User("b","abc", new Person("Belay", "Abebe", "555-9999")));
 	}
 
-	public User update(Integer key, User value) {
-		return userDataMap.put(key, value);
+	public User add(String username, User value) {
+		return userDataMap.put(username, value);
 	}
 
-	public User get(Integer key) {
-		return userDataMap.get(key);
+	public User update(String username, User value) {
+		return userDataMap.put(username, value);
 	}
 
-	public User delete(Integer key) {
-		return userDataMap.remove(key);
+	public User get(String username) {
+		return userDataMap.get(username);
+	}
+
+	public User delete(String username) {
+		return userDataMap.remove(username);
 	}
 
 }
