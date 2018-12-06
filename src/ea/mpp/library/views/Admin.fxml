@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="494.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.AdminUIController">
+<AnchorPane prefHeight="494.0" prefWidth="748.0" style="-fx-background-color: #E3F2FD;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.AdminUIController">
 	<children>
 		<TabPane layoutY="25.0" prefHeight="530.0" prefWidth="748.0" tabClosingPolicy="UNAVAILABLE">
 			<tabs>
