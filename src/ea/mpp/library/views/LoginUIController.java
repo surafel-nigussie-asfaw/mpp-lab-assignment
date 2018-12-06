@@ -47,12 +47,16 @@ public class LoginUIController {
 				try {
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(Main.class.getResource("Librerian.fxml"));
-					//loader.setController(new LibrerianUIController(user));
 					AnchorPane ap = (AnchorPane)loader.load();
 					Scene scene = new Scene(ap);
 					
 					Stage window = (Stage)(((Node) event.getSource()).getScene().getWindow());
 					window.setScene(scene);
+					
+					
+					LibrerianUIController lc = loader.<LibrerianUIController>getController();
+					lc.setUserData(user);
+					
 					window.show();
 					
 					
@@ -69,6 +73,10 @@ public class LoginUIController {
 					
 					Stage window = (Stage)(((Node) event.getSource()).getScene().getWindow());
 					window.setScene(scene);
+					
+					AdminUIController lc = loader.<AdminUIController>getController();
+					lc.setUserData(user);
+					
 					window.show();
 					
 					

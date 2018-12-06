@@ -3,14 +3,17 @@ package ea.mpp.library.views;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import ea.mpp.library.controllers.LibrarianController;
 import ea.mpp.library.controllers.UserController;
+import ea.mpp.library.data.Constants;
 import ea.mpp.library.entities.BookCopy;
 import ea.mpp.library.entities.BookInfo;
 import ea.mpp.library.entities.CheckOutEntry;
 import ea.mpp.library.entities.CheckOutRecord;
+import ea.mpp.library.entities.Role;
 import ea.mpp.library.entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,7 +35,22 @@ import javafx.stage.Stage;
 
 public class LibrerianUIController implements Initializable  {
 
+
+	@FXML
 	User userData;
+	
+	public User getUserData() {
+		return userData;
+	}
+
+	public void setUserData(User userData) {
+		this.userData = userData;
+		welcome.setText("Welcome " + userData.getPerson().getFirstName() + "!");
+		if(checkOtherRole()) {
+			goToAdmin.setVisible(true);
+		}
+		
+	}
 	
 	@FXML
 	TextField memberID, ISBN;
@@ -48,11 +66,11 @@ public class LibrerianUIController implements Initializable  {
 	AnchorPane bookInfoAnchorPane;
 	
 	@FXML
-	Label bookInfo, user, success, success2, errorMessage, errorMessage2;
+	Label bookInfo, user, success, success2, errorMessage, errorMessage2, welcome;
 
 	
 	@FXML
-	Button checkout;
+	Button checkout, goToAdmin;
 	
 
 	@FXML
@@ -175,17 +193,47 @@ public class LibrerianUIController implements Initializable  {
 			e.printStackTrace();
 		}
 	}
-	public LibrerianUIController(){
-		
+	
+	@FXML
+	public void goToAdmin(ActionEvent event){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("Admin.fxml"));
+			
+			AnchorPane ap = (AnchorPane)loader.load();
+			Scene scene = new Scene(ap);
+			
+			Stage window = (Stage)(((Node) event.getSource()).getScene().getWindow());
+			window.setScene(scene);
+			
+			AdminUIController lc = loader.<AdminUIController>getController();
+			lc.setUserData(this.userData);
+			window.show();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public LibrerianUIController(User user){
-		this.userData = user;
-		System.out.print(user.getUserName());
+
+	
+	public LibrerianUIController() {
+	
 	}
+
 	@Override
     public void initialize(URL url, ResourceBundle rb) {
 		
+	}
+	
+	public boolean checkOtherRole() {
+		for (Role _role : this.userData.getRoles()) {
+			if(_role.getName().equals("ADMINSTRATOR")) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 
