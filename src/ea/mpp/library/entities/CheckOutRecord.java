@@ -6,6 +6,7 @@ import java.util.List;
 public class CheckOutRecord {
 	private LibraryMember libraryMember;
 	private List<CheckOutEntry> checkOutEntries;
+	private boolean hasError;
 	private String errorMessage;
 	
 	public CheckOutRecord(LibraryMember libraryMember) {
@@ -36,6 +37,13 @@ public class CheckOutRecord {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	
-	
+
+	public boolean isHasError() {
+		return hasError;
+	}
+
+	public void setHasError(boolean hasError) {
+		this.hasError = hasError;
+	}
+
 }

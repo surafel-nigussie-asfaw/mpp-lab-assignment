@@ -3,8 +3,11 @@ package ea.mpp.library.views;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.util.List;
 
 import ea.mpp.library.controllers.*;
+import ea.mpp.library.data.Constants;
+import ea.mpp.library.entities.Role;
 import ea.mpp.library.entities.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,23 +43,52 @@ public class LoginUIController {
 		if(user != null) {
 			//route
 			System.out.println("Success");
-			try {
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("Librerian.fxml"));
-				AnchorPane ap = (AnchorPane)loader.load();
-				Scene scene = new Scene(ap);
-				
-				Stage window = (Stage)(((Node) event.getSource()).getScene().getWindow());
-				window.setScene(scene);
-				window.show();
-				
-				
-			} catch (IOException e) {
-				e.printStackTrace();
+			if(checkRole(user.getRoles(), new Role(Constants.Roles.LIBRARIAN.name()))) {
+				try {
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(Main.class.getResource("Librerian.fxml"));
+					//loader.setController(new LibrerianUIController(user));
+					AnchorPane ap = (AnchorPane)loader.load();
+					Scene scene = new Scene(ap);
+					
+					Stage window = (Stage)(((Node) event.getSource()).getScene().getWindow());
+					window.setScene(scene);
+					window.show();
+					
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
+			else if(checkRole(user.getRoles(), new Role(Constants.Roles.ADMINSTRATOR.name()))) {
+				try {
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(Main.class.getResource("Admin.fxml"));
+					AnchorPane ap = (AnchorPane)loader.load();
+					Scene scene = new Scene(ap);
+					
+					Stage window = (Stage)(((Node) event.getSource()).getScene().getWindow());
+					window.setScene(scene);
+					window.show();
+					
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
 		}else {
 			errorMessage.setText("Wrong Credentials");
 		}
+	}
+	
+	public boolean checkRole(List<Role> roles, Role role) {
+		for (Role _role : roles) {
+			if(_role.getName().equals(role.getName())) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 //	public void initSearchBook() {

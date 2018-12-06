@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.LoginUIController">
    <children>
-      <Label layoutX="71.0" layoutY="8.0" prefHeight="30.0" prefWidth="59.0" text="Login" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="70.0">
+      <Label layoutX="71.0" layoutY="8.0" prefHeight="30.0" prefWidth="90.0" text="Login" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="70.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

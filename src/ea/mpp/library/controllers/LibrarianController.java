@@ -85,17 +85,25 @@ public class LibrarianController {
 		LibraryMember libraryMember = memberDAO.get(libraryMemberId);
 		if(libraryMember == null) {
 			CheckOutRecord record = new CheckOutRecord(null);
+			record.setHasError(true);
 			record.setErrorMessage("Memeber doesn't exist.");
 			return record;
-		}
+		}else {
 		
 		//check for member record
 		CheckOutRecord record = checkOutRecordDAO.get(libraryMemberId);
 		if(record == null) {
 			record = new CheckOutRecord(null);
+			record.setHasError(true);
 			record.setErrorMessage("Memeber has no checkout record.");
 			return record;
 		} else {
+			if(record.getCheckOutEntries().size() == 0) {
+				record = new CheckOutRecord(null);
+				record.setHasError(true);
+				record.setErrorMessage("Has record, but can't find check out entry.");
+				return record;
+			}else {
 			//member has record, update book info
 			for (CheckOutEntry entry : record.getCheckOutEntries()) {
 				if(entry.getBookCopy().getCopyId() == bookCopyId) {
@@ -103,15 +111,20 @@ public class LibrarianController {
 					BookInfo bookInfo = bookInfoDAO.get(iSBN);
 					bookInfo.returnBookCopy(bookCopyId);
 					bookInfoDAO.update(iSBN, bookInfo);
-					//return record
+					record.setHasError(false);
+					record.setErrorMessage("Successfully checkedIn.");
 					return record;
 				} else {
 					record = new CheckOutRecord(null);
+					record.setHasError(true);
 					record.setErrorMessage("No check out record for book.");
 					return record;
 				}
 			}
+			}
 		}
+		
 		return null;
+		}
 	}
 }
