@@ -59,6 +59,12 @@ public class BookInfo {
 		this.authors = authors;
 	}
 
+	public int getCopies() {
+		
+		return bookCopies.size();
+	}
+	
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

@@ -30,7 +30,7 @@ public class BookUIController {
 	TextField ISBNField;
 	
 	@FXML 
-	TextField leasedaysField;
+	ComboBox leasedaysCombo;
 	
 	@FXML
 	TextField copiesField;
@@ -57,20 +57,6 @@ public class BookUIController {
 		
 	}
 	
-	@FXML
-	public void addAuthorClick() {
-
-		//bookInfo=new BookInfo(Integer.parseInt(leasedaysField.getText()),titleField.getText(),ISBNField.getText(),null,generateBookNumbers(Integer.parseInt(copiesField.getText())));
-		
-		//UIAddAuthor addAuthor=new UIAddAuthor(this,bookInfo);
-		
-		//addAuthor.show();
-		
-
-		//this.hide();
-		
-		
-	}
 	
 	@FXML
 	public void createButtonClick() {
@@ -82,13 +68,21 @@ public class BookUIController {
 		
 		authors.add(author);	
 		
+
+		try
+		{
 		
-		boolean result=admin.addBook(titleField.getText(), ISBNField.getText(),7,authors,generateBookNumbers(Integer.parseInt(copiesField.getText())));
+		boolean result=admin.addBook(titleField.getText(),ISBNField.getText(),Integer.parseInt(leasedaysCombo.getValue().toString()),authors,generateBookNumbers(Integer.parseInt(copiesField.getText())));
 	
 		
 		System.out.println(result);
 		System.out.println(admin.getBook(titleField.getText()).getTitle() + admin.getBooksCount());
 		
+		}
+		catch(Exception ex) {
+			
+			System.out.println("Please fill in the information in the fields.");
+		}
 	}
 	
 	@FXML
@@ -129,6 +123,7 @@ public class BookUIController {
 	@FXML
 	private void initialize() {
 		
+	
 		admin=new AdminController();
 		
 		for(Author author: admin.getAuthors()) {
@@ -136,6 +131,9 @@ public class BookUIController {
 			authorCombo.getItems().add(author);
 			
 		}
+		
+		leasedaysCombo.getItems().add(7);
+		leasedaysCombo.getItems().add(21);
 		
 	}
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import ea.mpp.library.entities.Address;
@@ -20,8 +21,8 @@ public class BookInfoDAO
 			BookInfo bookOne = new BookInfo(7, "UML Distilled", "1234567", new ArrayList<>(), new ArrayList<>());
 			BookInfo bookTwo = new BookInfo(7, "Java for the impatient", "7654321", new ArrayList<>(), new ArrayList<>());
 			
-			put(bookOne.getTitle(), bookOne);
-			put(bookTwo.getTitle(), bookTwo);
+			put(bookOne.getISBN(), bookOne);
+			put(bookTwo.getISBN(), bookTwo);
 		}
 	};
 
@@ -32,7 +33,20 @@ public class BookInfoDAO
 	}
 
 	public BookInfo update(BookInfo value) {
-		return bookInfoDataMap.put(value.getTitle(), value);
+		
+		for (Entry<String, BookInfo> entry : bookInfoDataMap.entrySet()) {
+		
+			if(((BookInfo)entry.getValue()).getISBN().equals(value.getISBN())){
+								
+				String updatedKey=entry.getKey();
+				
+				bookInfoDataMap.replace(updatedKey,value);
+				
+			}
+			
+		}
+		
+		return get(value.getTitle());
 	}
 
 	public BookInfo get(String title) {
@@ -42,6 +56,7 @@ public class BookInfoDAO
 	public BookInfo delete(String title) {
 		return bookInfoDataMap.remove(title);
 	}
+	
 	
 	public List<BookInfo> searchBooksByTitle(String text) {
 
@@ -66,6 +81,18 @@ public class BookInfoDAO
 
 	public boolean exists(String ISBN) {
 		return bookInfoDataMap.containsKey(ISBN);
+	}
+	
+	public List<BookInfo> getAll() {
+		
+		List<BookInfo> bookInfos=new ArrayList<BookInfo>();
+		
+		for (BookInfo bookInfo : bookInfoDataMap.values()) {
+			
+			bookInfos.add(bookInfo);
+		}
+		
+		return bookInfos;
 	}
 	
 	public int count() {

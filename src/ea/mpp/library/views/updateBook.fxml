@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" padding="$x1" prefHeight="499.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.BookUIController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" padding="$x1" prefHeight="499.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.UpdateBookUI">
   <children>
     <AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="653.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -16,8 +16,7 @@
           <bottom>
             <HBox alignment="CENTER_RIGHT" disable="false" fillHeight="true" prefHeight="54.009999999999984" prefWidth="223.0" spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
               <children>
-                <Button fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" text="Cancel" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
-                <Button id="nextButton" fx:id="createButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createButtonClick" prefHeight="41.0" prefWidth="118.0" text="Create" textAlignment="LEFT" HBox.hgrow="ALWAYS" />
+                <Button id="nextButton" fx:id="updateButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateBook" prefHeight="41.0" prefWidth="118.0" text="Update" textAlignment="LEFT" HBox.hgrow="ALWAYS" />
               </children>
               <BorderPane.margin>
                 <Insets right="10.0" />
@@ -25,7 +24,7 @@
             </HBox>
           </bottom>
           <center>
-            <Pane prefHeight="410.0" prefWidth="453.0">
+            <Pane prefHeight="444.0" prefWidth="488.0">
               <children>
                 <VBox layoutX="21.0" layoutY="67.0" prefHeight="341.0" prefWidth="312.0">
                   <children>
@@ -73,7 +72,18 @@
             </Pane>
           </center>
           <right>
-            <Pane prefHeight="444.0" prefWidth="277.0" />
+            <Pane prefHeight="444.0" prefWidth="493.0">
+                     <children>
+                        <TableView fx:id="booksView" layoutY="76.0" prefHeight="345.0" prefWidth="486.0">
+                          <columns>
+                              <TableColumn prefWidth="30.0" text="#" />
+                            <TableColumn fx:id="dataTitleColumn" prefWidth="190.0" text="Title" />
+                            <TableColumn prefWidth="196.0" text="ISBN" />
+                              <TableColumn prefWidth="69.0" text="Copies" />
+                          </columns>
+                        </TableView>
+                        <Label layoutY="55.0" text="Double click book to edit" />
+                     </children></Pane>
           </right>
         </BorderPane>
       </children>
