@@ -28,26 +28,25 @@ public class BookInfoDAO {
 		return bookInfoDataMap.remove(title);
 	}
 	
-	@SuppressWarnings("serial")
 	public List<BookInfo> searchBooksByTitle(String text) {
 
-		StringBuilder builder = new StringBuilder();
-		builder.append("(.*)").append(text.toLowerCase()).append("(.*)");
+		StringBuilder builder = new StringBuilder()
+			.append("(.*)")
+			.append(text.toLowerCase())
+			.append("(.*)");
 		String searchText = builder.toString();
 		
-		List<BookInfo> foundBooks = bookInfoDataMap
+		List<BookInfo> booksFound = bookInfoDataMap
 			.values()
 			.stream()
-			.filter(info -> {
-				return info.getTitle().toLowerCase().matches(searchText);
+			.filter(bookInfo -> {
+				return bookInfo.getTitle()
+						.toLowerCase()
+						.matches(searchText);
 			})
 			.collect(Collectors.toList());
 		
-		return new ArrayList<BookInfo>() {
-			{
-				addAll(foundBooks);
-			}
-		};
+		return new ArrayList<BookInfo>(booksFound);
 	}
 
 	public boolean bookExists(String ISBN) {

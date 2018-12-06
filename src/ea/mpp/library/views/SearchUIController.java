@@ -1,10 +1,9 @@
 package ea.mpp.library.views;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import ea.mpp.library.controllers.LibrarianController;
-import ea.mpp.library.entities.BookInfo;
+import ea.mpp.library.entities.BookDisplay;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,7 +35,16 @@ public class SearchUIController {
 
 	@FXML
 	private void onSearchAction(ActionEvent event) {
-		searchForBooks();
+		String searchText = searchTextField.getText();
+
+		if (searchText.isEmpty()) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Enter title to search");
+			alert.showAndWait();
+		}
+		else {
+			searchBookByTitle(searchText);
+		}
 	}
 
 	@FXML
@@ -47,49 +55,43 @@ public class SearchUIController {
 	@FXML
 	private void initialize() {
 		bookListView.setItems(observable);
-		bookListView.getSelectionModel().selectedItemProperty().addListener((a, b, item) -> {
+		bookListView.getSelectionModel()
+		.selectedItemProperty()
+		.addListener((__, ___, item) -> {
 			infoLabel.setText(item.getDisplayText());
 		});
-		searchTextField.textProperty().addListener((a, b, text) -> {
-			searchForBooks();
+
+		searchTextField.textProperty()
+		.addListener((__, ___, title) -> {
+			searchBookByTitle(title); 
 		});
 	}
 
-	private void searchForBooks() {
-		String searchText = searchTextField.getText();
+	/**
+	 * Search for book(s) matching the given title
+	 * 
+	 * @param titleText Title text to search
+	 */
+	private void searchBookByTitle(String titleText) {
+		List<BookDisplay> books = LibrarianController.getInstance()
+				.searchBookByTitle(titleText);
 
-		if (searchText.isEmpty()) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setContentText("Enter a valid search text");
-			alert.showAndWait();
-		} else {
-			LibrarianController controller = LibrarianController.getInstance();
-			List<BookDisplay> books = controller.searchBookByTitle(searchText)
-					.stream()
-					.map(info -> { 
-						return new BookDisplay(info);
-					}).collect(Collectors.toList());
-
-			observable.clear();
-			observable.addAll(books);
-		}
+		displaySearchResults(books);
 	}
 
-	private class BookDisplay {
+	/**
+	 * Display book search results
+	 * 
+	 * @param results A {@linkplain List} of {@link BookDisplay}
+	 */
+	private void displaySearchResults(List<BookDisplay> results) {
+		observable.clear();
 
-		private BookInfo bookInfo;
-
-		BookDisplay(BookInfo bookInfo) {
-			this.bookInfo = bookInfo;
+		if (results.isEmpty()) {
+			infoLabel.setText("No matches found!");
 		}
-
-		public String getDisplayText() {
-			return bookInfo.toString();
-		}
-
-		@Override
-		public String toString() {
-			return bookInfo.getTitle();
+		else {
+			observable.addAll(results);
 		}
 	}
 
