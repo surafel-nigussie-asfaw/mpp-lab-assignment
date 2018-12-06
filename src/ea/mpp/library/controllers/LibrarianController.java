@@ -1,5 +1,6 @@
 package ea.mpp.library.controllers;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class LibrarianController {
 		bookInfoDAO.update(iSBN, bookInfo);
 		
 		//create checkout entry
-		CheckOutEntry checkOutEntry = new CheckOutEntry(new Date(), new Date(), bookCopy);
+		CheckOutEntry checkOutEntry = new CheckOutEntry(new Date(), addDays(new Date(), bookInfo.getMaxLeaseDays()), bookCopy);
 		
 		//get record by member id
 		CheckOutRecord checkOutRecord = checkOutRecordDAO.get(libraryMember.getLibraryMemberId());
@@ -114,4 +115,12 @@ public class LibrarianController {
 		}
 		return null;
 	}
+	
+	public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
+    }
 }
