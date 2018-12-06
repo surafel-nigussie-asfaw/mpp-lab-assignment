@@ -19,6 +19,8 @@ public class Main extends Application {
 		this.primaryStage.setTitle("Library System");
 		initRootLayout();
 		initLogin();
+		
+		//initAddBook();
 	}
 
 	public static void main(String[] args) {
@@ -57,6 +59,17 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("Search.fxml"));
+			AnchorPane ap = (AnchorPane)loader.load();
+			root.setCenter(ap);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initAddBook() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("book.fxml"));
 			AnchorPane ap = (AnchorPane)loader.load();
 			root.setCenter(ap);
 		} catch (IOException e) {

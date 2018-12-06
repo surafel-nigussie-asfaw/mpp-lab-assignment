@@ -11,9 +11,13 @@ public class AdminController {
 	/* Data Access Object for Books: To be edited later */
 
 	BookInfoDAO dataAccess = new BookInfoDAO();
+	
+	
+	private static AuthorDAO authorDAO=new AuthorDAO();
 
 	public AdminController() {
 
+	
 	}
 
 	/**
@@ -59,20 +63,21 @@ public class AdminController {
 	 */
 	public boolean addBook(String title, String ISBN, int maxLeaseDays, List<Author> authors, List<BookCopy> copies) {
 
-		BookInfo bookInfo = new BookInfo(maxLeaseDays, title, ISBN, authors, copies);
+	
+		if (!dataAccess.exists(ISBN)) {
 
-		if (dataAccess.bookExists(bookInfo)) {
-
+			BookInfo bookInfo = new BookInfo(maxLeaseDays, title, ISBN, authors, copies);
+			
+			dataAccess.add(bookInfo);
+			
+			return true;
+		}		
+			
+		else {
+			
 			return false;
 		}
-
-		else {
-
-			return dataAccess.add(bookInfo);
-
-		}
-
-		return false;
+		
 
 	}
 
@@ -82,11 +87,20 @@ public class AdminController {
 	 */
 	public List<BookInfo> getBooks() {
 
-//			return dataAccess.getBooks();
+			//return dataAccess.getBooks();
 		return null;
 
 	}
 
+	public BookInfo getBook(String title) {
+		
+		return dataAccess.get(title);
+	}
+	
+	public int getBooksCount() {
+		
+		return dataAccess.count();
+	}
 	
 	/**
 	 * editing an existing book in the store
@@ -119,5 +133,18 @@ public class AdminController {
 //			authorDAO.add(author);
 
 	}
+	
+	/**
+	 * get authors from DAO
+	 */
+	public List<Author> getAuthors(){
+		
+		return authorDAO.getAuthors();
+	}
 
+	public Author getAuthor(String id) {
+		
+		return authorDAO.getAuthor(id);
+	}
+	
 }

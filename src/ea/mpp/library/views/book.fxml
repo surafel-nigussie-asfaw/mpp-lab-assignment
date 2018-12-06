@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" padding="$x1" prefHeight="499.0" prefWidth="607.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ea.mpp.library.views.BookUIController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" padding="$x1" prefHeight="499.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.BookUIController">
   <children>
     <AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="653.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -31,26 +31,32 @@
                   <children>
                     <Pane prefHeight="66.0" prefWidth="312.0">
                       <children>
-                        <TextArea fx:id="titleField" layoutX="7.0" layoutY="25.0" prefHeight="34.0" prefWidth="300.0" wrapText="true" />
+                                    <TextField fx:id="titleField" layoutX="11.0" layoutY="30.0" prefHeight="31.0" prefWidth="293.0" />
                         <Label layoutX="7.0" layoutY="9.0" prefWidth="64.0" text="Title" />
                       </children>
                     </Pane>
                     <Pane prefHeight="66.0" prefWidth="312.0">
                       <children>
-                        <TextArea fx:id="ISBNField" layoutX="7.0" layoutY="25.0" prefHeight="34.0" prefWidth="300.0" wrapText="true" />
+                                    <TextField fx:id="ISBNField" layoutX="7.0" layoutY="27.0" prefHeight="31.0" prefWidth="296.0" />
                         <Label layoutX="7.0" layoutY="6.0" text="ISBN" />
                       </children>
                     </Pane>
+                              <Pane prefHeight="66.0" prefWidth="312.0">
+                                 <children>
+                                    <Label layoutX="7.0" layoutY="6.0" text="Author" />
+                                    <ComboBox fx:id="authorCombo" layoutX="7.0" layoutY="27.0" onAction="#onAuthorSelect" prefHeight="31.0" prefWidth="290.0" />
+                                 </children>
+                              </Pane>
                     <Pane prefHeight="66.0" prefWidth="312.0">
                       <children>
-                        <TextArea fx:id="leasedaysField" layoutX="7.0" layoutY="25.0" prefHeight="34.0" prefWidth="300.0" wrapText="true" />
+                                    <TextField fx:id="leasedaysField" layoutX="7.0" layoutY="27.0" prefHeight="31.0" prefWidth="78.0" />
                         <Label layoutX="7.0" layoutY="6.0" text="Lease days" />
                       </children>
                     </Pane>
                     <Pane prefHeight="55.0" prefWidth="312.0">
                       <children>
                         <Label layoutX="7.0" layoutY="5.0" text="Copies" />
-                        <TextField fx:id="copiesField" layoutX="7.0" layoutY="19.0" prefHeight="28.9609375" prefWidth="79.0" />
+                        <TextField fx:id="copiesField" layoutX="7.0" layoutY="26.0" prefHeight="28.9609375" prefWidth="79.0" />
                       </children>
                     </Pane>
                   </children>
@@ -67,13 +73,7 @@
             </Pane>
           </center>
           <right>
-            <Pane prefHeight="444.0" prefWidth="277.0">
-              <children>
-                <Label layoutX="14.0" layoutY="77.0" text="Authors" />
-                <ListView layoutX="14.0" layoutY="93.0" prefHeight="284.0" prefWidth="249.0" />
-                <Button fx:id="addButton" layoutX="221.0" layoutY="388.0" mnemonicParsing="false" onAction="#addAuthorClick" text="Add" />
-              </children>
-            </Pane>
+            <Pane prefHeight="444.0" prefWidth="277.0" />
           </right>
         </BorderPane>
       </children>
