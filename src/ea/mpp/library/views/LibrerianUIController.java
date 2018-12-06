@@ -148,6 +148,7 @@ public class LibrerianUIController implements Initializable  {
 	public void checkinClicked(ActionEvent event) {
 		CheckOutRecord record = lc.checkIn(Integer.valueOf(memberID.getText()), ISBN.getText(), Integer.valueOf(copyID2.getText()));
 		if(!record.isHasError()) {
+			errorMessage2.setText("");
 			success2.setText(record.getErrorMessage());
 			
 
@@ -166,6 +167,7 @@ public class LibrerianUIController implements Initializable  {
 		}else {
 			success2.setText("");
 			table2.setItems(null);
+			errorMessage2.setText(record.getErrorMessage());
 		}
 		
 	}

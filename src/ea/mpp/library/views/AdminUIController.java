@@ -40,7 +40,7 @@ public class AdminUIController implements Initializable {
 		this.userData = userData;
 		welcome.setText("Welcome " + userData.getPerson().getFirstName() + "!");
 		if(checkOtherRole()) {
-			//goToLibButon.setVisible(true);
+			goToLibButon.setVisible(true);
 		}
 		
 	}
@@ -60,7 +60,7 @@ public class AdminUIController implements Initializable {
 	TextField copiesField;
 	
 	@FXML 
-	Button addButton;
+	Button addButton, goToLibButon;
 	
 	@FXML
 	Button createButton;
