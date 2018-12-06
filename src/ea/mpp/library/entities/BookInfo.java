@@ -10,6 +10,7 @@ public class BookInfo {
 	private List<Author> authors;
 	private List<BookCopy> bookCopies;
 	
+	
 	public BookInfo(int maxLeaseDays, String title, String iSBN) {
 		this(maxLeaseDays, title, iSBN, new ArrayList<>(), new ArrayList<>());
 	}

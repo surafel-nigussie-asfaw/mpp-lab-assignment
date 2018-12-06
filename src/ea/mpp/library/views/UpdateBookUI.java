@@ -10,6 +10,8 @@ import ea.mpp.library.controllers.AdminController;
 import ea.mpp.library.entities.Author;
 import ea.mpp.library.entities.BookCopy;
 import ea.mpp.library.entities.BookInfo;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,10 +20,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 
 public class UpdateBookUI {
 
@@ -118,14 +122,25 @@ public class UpdateBookUI {
 		for (BookInfo bookInfo : admin.getBooks()) {
 
 			bookList.add(bookInfo);
+
 		}
 
+		((TableColumn) booksView.getColumns().get(0)).setCellValueFactory(new Callback<CellDataFeatures<BookInfo, String>,ObservableValue<String>>() {
+			  @Override public ObservableValue<String> call(CellDataFeatures<BookInfo, String> p) {
+				    return new ReadOnlyObjectWrapper(booksView.getItems().indexOf(p.getValue()) + 1);
+				  }
+				});   
+		
 		((TableColumn) booksView.getColumns().get(1))
 				.setCellValueFactory(new PropertyValueFactory<BookInfo, String>("title"));
 		((TableColumn) booksView.getColumns().get(2))
 				.setCellValueFactory(new PropertyValueFactory<BookInfo, String>("ISBN"));
-
+		((TableColumn) booksView.getColumns().get(3))
+		.setCellValueFactory(new PropertyValueFactory<BookInfo, String>("copies"));
+		
 		booksView.setItems(bookList);
+		
+		
 
 	}
 
@@ -154,17 +169,14 @@ public class UpdateBookUI {
 					Integer.parseInt(leasedaysCombo.getValue().toString()), authors,
 					generateBookNumbers(Integer.parseInt(copiesField.getText())));
 
-			if(result) {
+			if (result) {
 				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 				alert.setTitle("EA Library System");
 				alert.setContentText("Success");
 				alert.showAndWait();
 			}
-			
-			
-			populateListView();
 
-	
+			populateListView();
 
 		} catch (Exception ex) {
 
@@ -172,10 +184,9 @@ public class UpdateBookUI {
 		}
 	}
 
-	
 	/**
 	 * generate a set of unique numbers to be used by the Book Copies
-	 * */
+	 */
 	@FXML
 	private List<BookCopy> generateBookNumbers(int copies) {
 

@@ -23,8 +23,8 @@ public class Main extends Application {
 
 		//initLogin();
 		
-		initAddBook();
-		//initUpdateBook();
+		//initAddBook();
+		initUpdateBook();
 
 		//initSearchBook();
 
