@@ -120,37 +120,25 @@ public class LibraryMemberController {
 		
 		colStreet.setCellValueFactory(new Callback<CellDataFeatures<LibraryMember, String>, ObservableValue<String>>() {
 		      public ObservableValue<String> call(CellDataFeatures<LibraryMember, String> member) {
-		    	  String val = member.getValue().getPerson().getAddress().getStreet();
-		    	  
-		          return (new SimpleStringProperty(val));
-		    	  
+		    	  return member.getValue().getPerson().getAddress().streetProperty();
 		      }
 		   });
 		
 		colCity.setCellValueFactory(new Callback<CellDataFeatures<LibraryMember, String>, ObservableValue<String>>() {
 		      public ObservableValue<String> call(CellDataFeatures<LibraryMember, String> member) {
-		    	  String val = member.getValue().getPerson().getAddress().getCity();
-		    	  
-		          return (new SimpleStringProperty(val));
-		    	  
+		    	  return member.getValue().getPerson().getAddress().cityProperty();
 		      }
 		   });
 		
 		colState.setCellValueFactory(new Callback<CellDataFeatures<LibraryMember, String>, ObservableValue<String>>() {
 		      public ObservableValue<String> call(CellDataFeatures<LibraryMember, String> member) {
-		    	  String val = member.getValue().getPerson().getAddress().getState();
-		    	  
-		          return (new SimpleStringProperty(val));
-		    	  
+		    	  return member.getValue().getPerson().getAddress().stateProperty();
 		      }
 		   });
 		
 		colZip.setCellValueFactory(new Callback<CellDataFeatures<LibraryMember, String>, ObservableValue<String>>() {
 		      public ObservableValue<String> call(CellDataFeatures<LibraryMember, String> member) {
-		    	  String val = member.getValue().getPerson().getAddress().getZipCode();
-		    	  
-		          return (new SimpleStringProperty(val));
-		    	  
+		    	  return member.getValue().getPerson().getAddress().zipCodeProperty();
 		      }
 		   });
 		

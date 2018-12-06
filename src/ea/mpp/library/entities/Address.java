@@ -1,47 +1,63 @@
 package ea.mpp.library.entities;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Address {
-	private String street;
-	private String city;
-	private String state;
-	private String zipCode;
+	private final StringProperty streetProperty = new SimpleStringProperty();
+	private final StringProperty cityProperty = new SimpleStringProperty();
+	private final StringProperty stateProperty = new SimpleStringProperty();
+	private final StringProperty zipCodeProperty = new SimpleStringProperty();
 	
 	public Address(String street, String city, String state, String zipCode) {
-		this.street = street;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
+		streetProperty.set(street); 
+		cityProperty.set(city);
+		stateProperty.set(state);
+		zipCodeProperty.set(state);
 	}
 
+	public StringProperty streetProperty() {
+		return streetProperty;
+	}
 	public String getStreet() {
-		return street;
+		return streetProperty.get();
 	}
 
 	public void setStreet(String street) {
-		this.street = street;
+		streetProperty.set(street);
 	}
 
+	public StringProperty cityProperty() {
+		return cityProperty;
+	}
 	public String getCity() {
-		return city;
+		return cityProperty.get();
 	}
 
 	public void setCity(String city) {
-		this.city = city;
+		cityProperty.set(city);
 	}
 
+	public StringProperty stateProperty() {
+		return stateProperty;
+	}
 	public String getState() {
-		return state;
+		return stateProperty.get();
 	}
 
 	public void setState(String state) {
-		this.state = state;
+		stateProperty.set(state);
 	}
 
+	public StringProperty zipCodeProperty() {
+		return zipCodeProperty;
+	}
 	public String getZipCode() {
-		return zipCode;
+		return zipCodeProperty.get();
 	}
 
 	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
+		zipCodeProperty.set(zipCode);
 	}
+
 }
