@@ -49,7 +49,10 @@ public class SearchUIController {
 
 	@FXML
 	private void onCheckoutAction(ActionEvent event) {
-		System.out.println("Checkout the selected book");
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("EA Library System");
+		alert.setContentText("On we go to checkout book");
+		alert.showAndWait();
 	}
 
 	@FXML
@@ -86,11 +89,12 @@ public class SearchUIController {
 	 */
 	private void displaySearchResults(List<BookDisplay> results) {
 		observable.clear();
-
+		
 		if (results.isEmpty()) {
 			infoLabel.setText("No matches found!");
 		}
 		else {
+			infoLabel.setText("");
 			observable.addAll(results);
 		}
 	}

@@ -10,7 +10,16 @@ import ea.mpp.library.entities.BookInfo;
 
 public class BookInfoDAO {
 	
-	private Map<String, BookInfo> bookInfoDataMap = new HashMap<String, BookInfo>();
+	@SuppressWarnings("serial")
+	private Map<String, BookInfo> bookInfoDataMap = new HashMap<String, BookInfo>() {
+		{
+			BookInfo bookOne = new BookInfo(7, "UML Distilled", "1234567", new ArrayList<>(), new ArrayList<>());
+			BookInfo bookTwo = new BookInfo(7, "Java for the impatient", "7654321", new ArrayList<>(), new ArrayList<>());
+			
+			put(bookOne.getTitle(), bookOne);
+			put(bookTwo.getTitle(), bookTwo);
+		}
+	};
 	
 	public BookInfo add(BookInfo value) {
 		return bookInfoDataMap.put(value.getTitle(), value);
