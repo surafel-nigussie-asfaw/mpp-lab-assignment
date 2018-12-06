@@ -16,8 +16,8 @@ public class MemberDAO {
 		libraryMemberDataMap.put(3, new LibraryMember(3, new Person("MemberF3", "MemberL3", "1209933")));
 	}
 	
-	public LibraryMember add(LibraryMember value) {
-		return libraryMemberDataMap.put(generateUniqueId(), value);
+	public LibraryMember add(int libraryMemberId, LibraryMember value) {
+		return libraryMemberDataMap.put(libraryMemberId, value);
 	}
 
 	public LibraryMember update(Integer memberId, LibraryMember value) {

@@ -12,6 +12,7 @@ import ea.mpp.library.entities.BookInfo;
 import ea.mpp.library.entities.Person;
 
 public class BookInfoDAO {
+	
 	private Map<String, BookInfo> bookInfoDataMap = new HashMap<String, BookInfo>();
 	
 	public BookInfoDAO() {
@@ -27,12 +28,12 @@ public class BookInfoDAO {
 		bookInfoDataMap.put("isbn", new BookInfo(10, "the love", "isbn", authors, bookcopies));
 	}
 	
-	public BookInfo add(String iSBN, BookInfo value) {
-		return bookInfoDataMap.put(iSBN, value);
+	public BookInfo add(BookInfo value) {
+		return bookInfoDataMap.put(value.getISBN(), value);
 	}
 
-	public BookInfo update(String iSBN, BookInfo value) {
-		return bookInfoDataMap.put(iSBN, value);
+	public BookInfo update(BookInfo value) {
+		return bookInfoDataMap.put(value.getISBN(), value);
 	}
 
 	public BookInfo get(String iSBN) {
@@ -43,6 +44,7 @@ public class BookInfoDAO {
 		return bookInfoDataMap.remove(iSBN);
 	}
 	
+
 	public List<BookInfo> searchBooksByTitle(String text) {
 
         StringBuilder builder = new StringBuilder()
@@ -63,4 +65,9 @@ public class BookInfoDAO {
         
         return new ArrayList<BookInfo>(booksFound);
     }
+
+	public boolean bookExists(String ISBN) {
+		return bookInfoDataMap.containsKey(ISBN);
+	}
+
 }

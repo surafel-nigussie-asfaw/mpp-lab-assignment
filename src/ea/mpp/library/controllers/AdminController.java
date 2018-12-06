@@ -44,7 +44,7 @@ public class AdminController {
 	 * @return
 	 */
 	public LibraryMember addLibraryMember(Person personDetails) {
-		Integer libraryMemberId = memberDAO.generateUniqueId();
+		Integer libraryMemberId = MemberDAO.generateUniqueId();
 		LibraryMember member = new LibraryMember(libraryMemberId, personDetails);
 
 		memberDAO.add(libraryMemberId, member);
@@ -52,26 +52,17 @@ public class AdminController {
 		return member;
 	}
 	
-
-	/*Steven*/
 	/** adding book to the data store
 	 
 	 */
-	public boolean addBook(String title, String ISBN, int maxLeaseDays, List<Author> authors, List<BookCopy> copies) {
+	public boolean addBook(String title, String isbn, int maxLeaseDays, List<Author> authors, List<BookCopy> copies) {
 
-		BookInfo bookInfo = new BookInfo(maxLeaseDays, title, ISBN, authors, copies);
-
-		if (dataAccess.bookExists(bookInfo)) {
-
-			return false;
+		if (!dataAccess.bookExists(isbn)) {
+			BookInfo bookInfo = new BookInfo(maxLeaseDays, title, isbn, authors, copies);
+			dataAccess.add(bookInfo);
+			return true;
 		}
-
-		else {
-
-			return dataAccess.add(bookInfo);
-
-		}
-
+		
 		return false;
 
 	}

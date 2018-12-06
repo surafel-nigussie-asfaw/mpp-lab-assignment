@@ -21,9 +21,9 @@ public class LibrarianController {
 	private MemberDAO memberDAO = new MemberDAO();
 	private BookInfoDAO bookInfoDAO = new BookInfoDAO();
 	private CheckOutRecordDAO checkOutRecordDAO = new CheckOutRecordDAO();
-	
+
 	private LibrarianController() {}
-	
+
 	public static LibrarianController getInstance() {return instance;}
 	
 	public BookInfo getBookInfo(int libraryMemberId, String iSBN) {
@@ -60,11 +60,12 @@ public class LibrarianController {
 		//check if there is available book
 		BookInfo bookInfo = bookInfoDAO.get(iSBN);
 		BookCopy bookCopy = bookInfo.getAvailableBook();
-		bookInfoDAO.update(iSBN, bookInfo);
+		bookInfoDAO.update(bookInfo);
 		
 		//create checkout entry
 		CheckOutEntry checkOutEntry = new CheckOutEntry(new Date(), addDays(new Date(), bookInfo.getMaxLeaseDays()), bookCopy);
 		
+
 		//get record by member id
 		CheckOutRecord checkOutRecord = checkOutRecordDAO.get(libraryMember.getLibraryMemberId());
 		
@@ -113,7 +114,7 @@ public class LibrarianController {
 					//update book info 
 					BookInfo bookInfo = bookInfoDAO.get(iSBN);
 					bookInfo.returnBookCopy(bookCopyId);
-					bookInfoDAO.update(iSBN, bookInfo);
+					bookInfoDAO.update( bookInfo);
 					record.setHasError(false);
 					record.setErrorMessage("Successfully checkedIn.");
 					return record;
@@ -130,7 +131,7 @@ public class LibrarianController {
 		return null;
 		}
 	}
-	
+
 	public static Date addDays(Date date, int days)
     {
         Calendar cal = Calendar.getInstance();
@@ -146,4 +147,5 @@ public class LibrarianController {
                 return new BookDisplay(bookInfo);
             }).collect(Collectors.toList());
     }
+
 }
