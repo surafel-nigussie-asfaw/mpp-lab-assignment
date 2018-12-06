@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -24,7 +25,7 @@ import javafx.scene.input.MouseEvent;
 
 public class UpdateBookUI {
 
-	AdminController admin= new AdminController();
+	AdminController admin = new AdminController();
 	BookInfo bookInfo;
 
 	@FXML
@@ -104,6 +105,10 @@ public class UpdateBookUI {
 
 	}
 
+	/**
+	 * Produce a list of Books and their attributes
+	 * 
+	 */
 	private void populateListView() {
 
 		booksView.getItems().clear();
@@ -121,13 +126,18 @@ public class UpdateBookUI {
 				.setCellValueFactory(new PropertyValueFactory<BookInfo, String>("ISBN"));
 
 		booksView.setItems(bookList);
-		
+
 	}
 
 	@FXML
 	public void onAuthorSelect() {
 
 	}
+
+	/**
+	 * 
+	 * update information within a single book
+	 */
 
 	@FXML
 	public void updateBook() {
@@ -144,37 +154,47 @@ public class UpdateBookUI {
 					Integer.parseInt(leasedaysCombo.getValue().toString()), authors,
 					generateBookNumbers(Integer.parseInt(copiesField.getText())));
 
+			if(result) {
+				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+				alert.setTitle("EA Library System");
+				alert.setContentText("Success");
+				alert.showAndWait();
+			}
+			
 			
 			populateListView();
-			
-			System.out.println(result);
 
+	
 
 		} catch (Exception ex) {
 
 			System.out.println(ex.getMessage());
 		}
 	}
+
 	
+	/**
+	 * generate a set of unique numbers to be used by the Book Copies
+	 * */
 	@FXML
 	private List<BookCopy> generateBookNumbers(int copies) {
-		
-		Random random=new Random();
+
+		Random random = new Random();
 		BookCopy copy;
-		List<BookCopy> bookCopies=new ArrayList<>();
-		
-		int count=0;
-		
-		while(count<copies) {
-			
-			copy=new BookCopy(random.nextInt(1000),bookInfo);
-			
+		List<BookCopy> bookCopies = new ArrayList<>();
+
+		int count = 0;
+
+		while (count < copies) {
+
+			copy = new BookCopy(random.nextInt(1000), bookInfo);
+
 			bookCopies.add(copy);
-			
+
 			count++;
-			
+
 		}
-		
+
 		return bookCopies;
 	}
 }

@@ -36,7 +36,7 @@
                     </Pane>
                     <Pane prefHeight="66.0" prefWidth="312.0">
                       <children>
-                                    <TextField fx:id="ISBNField" layoutX="7.0" layoutY="27.0" prefHeight="31.0" prefWidth="296.0" />
+                                    <TextField fx:id="ISBNField" disable="true" layoutX="7.0" layoutY="27.0" prefHeight="31.0" prefWidth="296.0" />
                         <Label layoutX="7.0" layoutY="6.0" text="ISBN" />
                       </children>
                     </Pane>

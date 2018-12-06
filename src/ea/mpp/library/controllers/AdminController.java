@@ -53,9 +53,10 @@ public class AdminController {
 
 		return member;
 	}
-
+	
+	
 	/**
-	 * adding book to the data store
+	 * adding book to the DAO
 	 * 
 	 */
 
@@ -79,7 +80,7 @@ public class AdminController {
 	}
 
 	/**
-	 * getting all the books from the data store
+	 * getting all the books from the DAO
 	 * 
 	 * @return
 	 */
@@ -90,11 +91,21 @@ public class AdminController {
 
 	}
 
+	/***
+	 * get a single book by it's title
+	 * 
+	 * @param title
+	 * @return
+	 */
 	public BookInfo getBook(String title) {
 
 		return dataAccess.get(title);
 	}
 
+	/***
+	 * get number of books contained within the DAO
+	 * @return
+	 */
 	public int getBooksCount() {
 
 		return dataAccess.count();
@@ -147,6 +158,11 @@ public class AdminController {
 		return authorDAO.getAuthors();
 	}
 
+	/**
+	 * Get a single author from the DAO
+	 * @param id
+	 * @return
+	 */
 	public Author getAuthor(String id) {
 
 		return authorDAO.getAuthor(id);

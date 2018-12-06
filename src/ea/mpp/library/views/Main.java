@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -22,8 +23,8 @@ public class Main extends Application {
 
 		//initLogin();
 		
-		//initAddBook();
-		initUpdateBook();
+		initAddBook();
+		//initUpdateBook();
 
 		//initSearchBook();
 
@@ -77,10 +78,11 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("book.fxml"));
 			AnchorPane ap = (AnchorPane)loader.load();
-			root.setCenter(ap);
+			root.setCenter(ap);	
 			primaryStage.setResizable(false);
 			primaryStage.setHeight(530);
 			primaryStage.setWidth(607);
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
