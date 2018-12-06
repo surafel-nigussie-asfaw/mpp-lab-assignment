@@ -87,13 +87,13 @@
 								<Button layoutX="39.0" layoutY="106.0" mnemonicParsing="false" onAction="#onSearchAction" prefHeight="27.0" prefWidth="225.0" text="Search">
 									
 								</Button>
-								<Label alignment="TOP_LEFT" layoutX="315.0" layoutY="70.0" prefHeight="462.0" prefWidth="240.0" text="Information about the book goes here... and lets see it wrap now :D" wrapText="true" />
+								<Label fx:id="infoLabel" alignment="TOP_LEFT" layoutX="315.0" layoutY="70.0" prefHeight="462.0" prefWidth="240.0" wrapText="true" />
 								<Label layoutX="315.0" layoutY="35.0" text="Book Info">
 									<font>
 										<Font name="System Bold" size="14.0" />
 									</font>
 								</Label>
-                        <ListView layoutX="316.0" layoutY="116.0" prefHeight="267.0" prefWidth="247.0" />
+                        <ListView fx:id="bookListView" layoutX="40.0" layoutY="167.0" prefHeight="250.0" prefWidth="224.0" />
 							</children>
 						</AnchorPane>
 					</content>

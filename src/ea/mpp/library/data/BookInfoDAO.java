@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import ea.mpp.library.entities.Author;
 import ea.mpp.library.entities.BookCopy;
@@ -41,4 +42,25 @@ public class BookInfoDAO {
 	public BookInfo delete(String iSBN) {
 		return bookInfoDataMap.remove(iSBN);
 	}
+	
+	public List<BookInfo> searchBooksByTitle(String text) {
+
+        StringBuilder builder = new StringBuilder()
+            .append("(.*)")
+            .append(text.toLowerCase())
+            .append("(.*)");
+        String searchText = builder.toString();
+        
+        List<BookInfo> booksFound = bookInfoDataMap
+            .values()
+            .stream()
+            .filter(bookInfo -> {
+                return bookInfo.getTitle()
+                        .toLowerCase()
+                        .matches(searchText);
+            })
+            .collect(Collectors.toList());
+        
+        return new ArrayList<BookInfo>(booksFound);
+    }
 }

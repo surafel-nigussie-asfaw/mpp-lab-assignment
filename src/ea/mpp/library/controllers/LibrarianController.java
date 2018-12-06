@@ -3,11 +3,13 @@ package ea.mpp.library.controllers;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ea.mpp.library.data.BookInfoDAO;
 import ea.mpp.library.data.CheckOutRecordDAO;
 import ea.mpp.library.data.MemberDAO;
 import ea.mpp.library.entities.BookCopy;
+import ea.mpp.library.entities.BookDisplay;
 import ea.mpp.library.entities.BookInfo;
 import ea.mpp.library.entities.CheckOutEntry;
 import ea.mpp.library.entities.CheckOutRecord;
@@ -135,5 +137,13 @@ public class LibrarianController {
         cal.setTime(date);
         cal.add(Calendar.DATE, days); //minus number would decrement the days
         return cal.getTime();
+    }
+	
+	public List<BookDisplay> searchBookByTitle(String text) {
+        return bookInfoDAO.searchBooksByTitle(text)
+            .stream()
+            .map(bookInfo -> { 
+                return new BookDisplay(bookInfo);
+            }).collect(Collectors.toList());
     }
 }

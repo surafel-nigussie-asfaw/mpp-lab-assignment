@@ -107,4 +107,18 @@ public class BookInfo {
 		}
 		return count;
 	}
+	
+	@Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Title: ").append(title)
+        .append("\nISBN: ").append(ISBN)
+        .append("\nAuthor").append(authors.isEmpty() ? "" : "s").append(":");
+        
+        authors.forEach(author -> { builder.append("\n").append(author.toString()).append("\n"); });
+        
+        builder.append("\nCopies: ").append(bookCopies.size());
+        
+        return builder.toString();
+    }
 }

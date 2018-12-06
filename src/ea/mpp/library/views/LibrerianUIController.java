@@ -10,6 +10,7 @@ import ea.mpp.library.controllers.LibrarianController;
 import ea.mpp.library.controllers.UserController;
 import ea.mpp.library.data.Constants;
 import ea.mpp.library.entities.BookCopy;
+import ea.mpp.library.entities.BookDisplay;
 import ea.mpp.library.entities.BookInfo;
 import ea.mpp.library.entities.CheckOutEntry;
 import ea.mpp.library.entities.CheckOutRecord;
@@ -23,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -53,24 +55,23 @@ public class LibrerianUIController implements Initializable  {
 	}
 	
 	@FXML
+	private ListView<BookDisplay> bookListView;
+	
+	@FXML
 	TextField memberID, ISBN;
 	
 	@FXML
 	TextField memberID2, ISBN2, copyID2, searchTextField;
 	
 	@FXML
-	ListView<BookInfo> bookListView;
-	
-	
-	@FXML
 	AnchorPane bookInfoAnchorPane;
 	
 	@FXML
-	Label bookInfo, user, success, success2, errorMessage, errorMessage2, welcome;
+	Label bookInfo, user, success, success2, errorMessage, errorMessage2, welcome, infoLabel;
 
 	
 	@FXML
-	Button checkout, goToAdmin;
+	Button checkout, goToAdmin, searchButton;
 	
 
 	@FXML
@@ -99,6 +100,8 @@ public class LibrerianUIController implements Initializable  {
 	
 	private LibrarianController lc = LibrarianController.getInstance();
 	private UserController uc = UserController.getInstance();
+	
+	private ObservableList<BookDisplay> observable = FXCollections.observableArrayList();
 			
 	@FXML
 	public void getBookInfo(ActionEvent event) {
@@ -173,11 +176,6 @@ public class LibrerianUIController implements Initializable  {
 	}
 	
 	@FXML
-	private void onSearchAction(ActionEvent event) {
-		System.out.print("Searching for a book :D");
-	}
-	
-	@FXML
 	private void Logout(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -219,16 +217,6 @@ public class LibrerianUIController implements Initializable  {
 	}
 	
 
-	
-	public LibrerianUIController() {
-	
-	}
-
-	@Override
-    public void initialize(URL url, ResourceBundle rb) {
-		
-	}
-	
 	public boolean checkOtherRole() {
 		for (Role _role : this.userData.getRoles()) {
 			if(_role.getName().equals("ADMINSTRATOR")) {
@@ -239,9 +227,71 @@ public class LibrerianUIController implements Initializable  {
 	}
 	
 
-	
-	
-	
+	@FXML
+    private void onSearchAction(ActionEvent event) {
+        String searchText = searchTextField.getText();
 
+        if (searchText.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Enter title to search");
+            alert.showAndWait();
+        }
+        else {
+            searchBookByTitle(searchText);
+        }
+    }
+
+    @FXML
+    private void onCheckoutAction(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("EA Library System");
+        alert.setContentText("On we go to checkout book");
+        alert.showAndWait();
+    }
+
+    /**
+     * Search for book(s) matching the given title
+     * 
+     * @param titleText Title text to search
+     */
+    private void searchBookByTitle(String titleText) {
+        List<BookDisplay> books = LibrarianController.getInstance()
+                .searchBookByTitle(titleText);
+
+        displaySearchResults(books);
+    }
+
+    /**
+     * Display book search results
+     * 
+     * @param results A {@linkplain List} of {@link BookDisplay}
+     */
+    private void displaySearchResults(List<BookDisplay> results) {
+        observable.clear();
+        
+        if (results.isEmpty()) {
+            infoLabel.setText("No matches found!");
+        }
+        else {
+            infoLabel.setText("");
+            observable.addAll(results);
+        }
+    }
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		bookListView.setItems(observable);
+        bookListView.getSelectionModel()
+        .selectedItemProperty()
+        .addListener((__, ___, item) -> {
+            infoLabel.setText(item.getDisplayText());
+        });
+
+        searchTextField.textProperty()
+        .addListener((__, ___, title) -> {
+            searchBookByTitle(title); 
+        });
+		
+	}
 	
 }

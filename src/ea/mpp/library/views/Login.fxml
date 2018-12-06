@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.LoginUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(file:C:/Users/986933/Documents/mpp-lab-assignment/src/ea/mpp/library/views/lib.png);-fx-background-size: 100% 100%;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.LoginUIController">
    <children>
-      <Label layoutX="71.0" layoutY="8.0" prefHeight="30.0" prefWidth="90.0" text="Login" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="70.0">
+      <Label layoutX="138.0" layoutY="74.0" prefHeight="30.0" prefWidth="298.0" text="Login" textFill="#fcf8f8" AnchorPane.leftAnchor="138.0" AnchorPane.rightAnchor="164.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="50.0" text="Username" />
-      <Label layoutX="36.0" layoutY="100.0" text="Password" />
-      <TextField fx:id="username" layoutX="30.0" layoutY="67.0" text="admin" />
-      <PasswordField fx:id="password" layoutX="30.0" layoutY="117.0" text="abc" />
-      <Button fx:id="login" layoutX="30.0" layoutY="154.0" mnemonicParsing="false" onAction="#onLoginAction" text="Submit" />
+      <Label layoutX="139.0" layoutY="117.0" text="Username" textFill="#fcf9f9" />
+      <Label layoutX="139.0" layoutY="167.0" text="Password" textFill="#f2efef" />
+      <TextField fx:id="username" layoutX="133.0" layoutY="134.0" text="admin" />
+      <PasswordField fx:id="password" layoutX="133.0" layoutY="184.0" text="abc" />
+      <Button fx:id="login" layoutX="133.0" layoutY="221.0" mnemonicParsing="false" onAction="#onLoginAction" text="Submit" />
    </children>
 </AnchorPane>
