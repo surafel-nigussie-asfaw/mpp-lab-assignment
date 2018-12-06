@@ -18,6 +18,7 @@ import ea.mpp.library.entities.LibraryMember;
 import ea.mpp.library.entities.Person;
 import ea.mpp.library.entities.Role;
 import ea.mpp.library.entities.User;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -28,14 +29,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -57,6 +62,18 @@ public class AdminUIController implements Initializable {
 		}
 
 	}
+
+	AdminController admin;
+
+
+
+	@FXML
+	ComboBox leasedaysCombo;
+
+
+
+	@FXML
+	ComboBox authorCombo;
 
 	@FXML
 	Label welcome;
@@ -83,6 +100,28 @@ public class AdminUIController implements Initializable {
 	Button cancelButton;
 
 	BookInfo bookInfo;
+	
+	@FXML
+	TextField titleField2;
+
+	@FXML
+	TextField ISBNField2;
+
+	@FXML
+	ComboBox leasedaysCombo2, authorCombo2;
+
+	@FXML
+	TextField copiesField2;
+
+	
+	@FXML
+	Button updateButton;
+
+	@FXML
+	TableView booksView;
+
+	@FXML
+	TableColumn dataTitleColumn2;
 
 	public void addAuthorClick() {
 
@@ -96,30 +135,7 @@ public class AdminUIController implements Initializable {
 		// this.hide();
 	}
 
-	public void createButtonClick() {
-
-	}
-
-	private List<BookCopy> generateBookNumbers(int copies) {
-
-		Random random = new Random();
-		BookCopy copy;
-		List<BookCopy> bookCopies = new ArrayList<>();
-
-		int count = 0;
-
-		while (count < copies) {
-
-			copy = new BookCopy(random.nextInt(1000), bookInfo);
-
-			bookCopies.add(copy);
-
-			count++;
-
-		}
-
-		return bookCopies;
-	}
+	
 
 	@FXML
 	private TextField lastName;
@@ -221,6 +237,27 @@ public class AdminUIController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		intializeTable();
+		admin = new AdminController();
+
+		for (Author author : admin.getAuthors()) {
+
+			authorCombo.getItems().add(author);
+
+		}
+
+		leasedaysCombo.getItems().add(7);
+		leasedaysCombo.getItems().add(21);
+		
+		populateListView();
+
+		booksView.setOnMouseClicked((MouseEvent event) -> {
+			if (event.getClickCount() > 1) {
+				onBookSelected();
+			}
+		});
+
+		
+		
 	}
 
 	public boolean checkOtherRole() {
@@ -365,7 +402,149 @@ public class AdminUIController implements Initializable {
 
 		return true;
 	}
+	/***
+	 * Event for Creating a new book
+	 */
+	@FXML
+	public void createButtonClick() {
 
+		Author author = (Author) authorCombo.getValue();
+
+		List<Author> authors = new ArrayList<Author>();
+
+		authors.add(author);
+
+		try {
+
+			if (titleField.getText().isEmpty() || ISBNField.getText().isEmpty() || leasedaysCombo.getValue() == null
+					|| copiesField.getText().isEmpty()) {
+
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("EA Library System");
+				alert.setContentText("You may be missing some information");
+				alert.showAndWait();
+			}
+
+			else {
+
+				boolean result = admin.addBook(titleField.getText(), ISBNField.getText(),
+						Integer.parseInt(leasedaysCombo.getValue().toString()), authors,
+						generateBookNumbers(Integer.parseInt(copiesField.getText())));
+
+				if (result) {
+					Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+					alert.setTitle("EA Library System");
+					alert.setContentText("Success");
+					alert.showAndWait();
+					
+					populateListView();
+				}
+
+			}
+		} catch (Exception ex) {
+
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("EA Library System");
+			alert.setContentText("Error: " + "Must have atleast one book copy.");
+			alert.showAndWait();
+		}
+	}
+
+	@FXML
+	public void updateBook() {
+
+		Author author = (Author) authorCombo2.getValue();
+
+		List<Author> authors = new ArrayList<Author>();
+
+		authors.add(author);
+
+		try {
+
+			boolean result = admin.editBook(titleField2.getText(), ISBNField2.getText(),
+					Integer.parseInt(leasedaysCombo2.getValue().toString()), authors,
+					generateBookNumbers(Integer.parseInt(copiesField2.getText())));
+
+			if (result) {
+				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+				alert.setTitle("EA Library System");
+				alert.setContentText("Success");
+				alert.showAndWait();
+			}
+
+			populateListView();
+
+		} catch (Exception ex) {
+
+			System.out.println(ex.getMessage());
+		}
+	}
+	private void populateListView() {
+
+		booksView.getItems().clear();
+
+		ObservableList<BookInfo> bookList = FXCollections.observableArrayList();
+
+		for (BookInfo bookInfo : admin.getBooks()) {
+
+			bookList.add(bookInfo);
+
+		}
+
+		((TableColumn) booksView.getColumns().get(0)).setCellValueFactory(new Callback<CellDataFeatures<BookInfo, String>,ObservableValue<String>>() {
+			  @Override public ObservableValue<String> call(CellDataFeatures<BookInfo, String> p) {
+				    return new ReadOnlyObjectWrapper(booksView.getItems().indexOf(p.getValue()) + 1);
+				  }
+				});   
+		
+		((TableColumn) booksView.getColumns().get(1))
+				.setCellValueFactory(new PropertyValueFactory<BookInfo, String>("title"));
+		((TableColumn) booksView.getColumns().get(2))
+				.setCellValueFactory(new PropertyValueFactory<BookInfo, String>("ISBN"));
+		((TableColumn) booksView.getColumns().get(3))
+		.setCellValueFactory(new PropertyValueFactory<BookInfo, String>("copies"));
+		
+		booksView.setItems(bookList);
+		
+		
+
+	}
+
+	/**
+	 * generate a set of unique numbers to be used by the Book Copies
+	 */
+	@FXML
+	private List<BookCopy> generateBookNumbers(int copies) {
+
+		Random random = new Random();
+		BookCopy copy;
+		List<BookCopy> bookCopies = new ArrayList<>();
+
+		int count = 0;
+
+		while (count < copies) {
+
+			copy = new BookCopy(random.nextInt(1000), bookInfo);
+
+			bookCopies.add(copy);
+
+			count++;
+
+		}
+
+		return bookCopies;
+	}
+
+	public void onAuthorSelect() {
+
+		Author author = (Author) authorCombo.getValue();
+
+		List<Author> authors = new ArrayList<Author>();
+
+		authors.add(author);
+
+	}
+	
 	private void createLibraryMember() {
 		Address address = new Address(street.getText(), city.getText(), state.getText(), zipCode.getText());
 		Person person = new Person(firstName.getText(), lastName.getText(), phoneNumber.getText());
@@ -402,6 +581,40 @@ public class AdminUIController implements Initializable {
 		btnPrimary.setDisable(true);
 	}
 
+	public void onBookSelected() {
+
+		if (booksView.getSelectionModel().getSelectedItem() != null) {
+
+			BookInfo bookInfo = (BookInfo) booksView.getSelectionModel().getSelectedItem();
+
+			titleField2.setText(bookInfo.getTitle());
+			ISBNField2.setText(bookInfo.getISBN());
+			ISBNField2.setEditable(false);
+
+			leasedaysCombo2.getItems().clear();
+			authorCombo2.getItems().clear();
+
+			leasedaysCombo2.getItems().add(7);
+			leasedaysCombo2.getItems().add(21);
+
+			leasedaysCombo2.setValue(bookInfo.getMaxLeaseDays());
+
+			for (Author author : admin.getAuthors()) {
+
+				authorCombo2.getItems().add(author);
+			}
+
+			if (bookInfo.getAuthors().size() > 0) {
+				authorCombo2.setValue(bookInfo.getAuthors().get(0));
+
+			}
+
+			copiesField2.setText(String.valueOf(bookInfo.getCopies()));
+
+		}
+
+	}
+	
 	private void setCurrentMember(LibraryMember member) {
 		Person person = member.getPerson();
 		Address address = person.getAddress();

@@ -33,34 +33,30 @@ public class UpdateBookUI {
 	BookInfo bookInfo;
 
 	@FXML
-	TextField titleField;
+	TextField titleField2;
 
 	@FXML
-	TextField ISBNField;
+	TextField ISBNField2;
 
 	@FXML
-	ComboBox leasedaysCombo;
+	ComboBox leasedaysCombo2;
 
 	@FXML
-	TextField copiesField;
+	TextField copiesField2;
 
-	@FXML
-	Button addButton;
-
+	
 	@FXML
 	Button updateButton;
 
-	@FXML
-	Button cancelButton;
 
 	@FXML
-	ComboBox authorCombo;
+	ComboBox authorCombo2;
 
 	@FXML
 	TableView booksView;
 
 	@FXML
-	TableColumn dataTitleColumn;
+	TableColumn dataTitleColumn2;
 
 	@FXML
 	public void initialize() {
@@ -81,29 +77,29 @@ public class UpdateBookUI {
 
 			BookInfo bookInfo = (BookInfo) booksView.getSelectionModel().getSelectedItem();
 
-			titleField.setText(bookInfo.getTitle());
-			ISBNField.setText(bookInfo.getISBN());
-			ISBNField.setEditable(false);
+			titleField2.setText(bookInfo.getTitle());
+			ISBNField2.setText(bookInfo.getISBN());
+			ISBNField2.setEditable(false);
 
-			leasedaysCombo.getItems().clear();
-			authorCombo.getItems().clear();
+			leasedaysCombo2.getItems().clear();
+			authorCombo2.getItems().clear();
 
-			leasedaysCombo.getItems().add(7);
-			leasedaysCombo.getItems().add(21);
+			leasedaysCombo2.getItems().add(7);
+			leasedaysCombo2.getItems().add(21);
 
-			leasedaysCombo.setValue(bookInfo.getMaxLeaseDays());
+			leasedaysCombo2.setValue(bookInfo.getMaxLeaseDays());
 
 			for (Author author : admin.getAuthors()) {
 
-				authorCombo.getItems().add(author);
+				authorCombo2.getItems().add(author);
 			}
 
 			if (bookInfo.getAuthors().size() > 0) {
-				authorCombo.setValue(bookInfo.getAuthors().get(0));
+				authorCombo2.setValue(bookInfo.getAuthors().get(0));
 
 			}
 
-			copiesField.setText(String.valueOf(bookInfo.getCopies()));
+			copiesField2.setText(String.valueOf(bookInfo.getCopies()));
 
 		}
 
@@ -157,7 +153,7 @@ public class UpdateBookUI {
 	@FXML
 	public void updateBook() {
 
-		Author author = (Author) authorCombo.getValue();
+		Author author = (Author) authorCombo2.getValue();
 
 		List<Author> authors = new ArrayList<Author>();
 
@@ -165,9 +161,9 @@ public class UpdateBookUI {
 
 		try {
 
-			boolean result = admin.editBook(titleField.getText(), ISBNField.getText(),
-					Integer.parseInt(leasedaysCombo.getValue().toString()), authors,
-					generateBookNumbers(Integer.parseInt(copiesField.getText())));
+			boolean result = admin.editBook(titleField2.getText(), ISBNField2.getText(),
+					Integer.parseInt(leasedaysCombo2.getValue().toString()), authors,
+					generateBookNumbers(Integer.parseInt(copiesField2.getText())));
 
 			if (result) {
 				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
