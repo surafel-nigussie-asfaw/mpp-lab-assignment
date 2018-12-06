@@ -67,9 +67,9 @@
 														<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 													</columnConstraints>
 													<rowConstraints>
-														<RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="171.0" vgrow="SOMETIMES" />
-														<RowConstraints maxHeight="432.0" minHeight="10.0" prefHeight="313.0" vgrow="SOMETIMES" />
-														<RowConstraints maxHeight="179.0" minHeight="0.0" prefHeight="68.0" vgrow="SOMETIMES" />
+														<RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="144.0" vgrow="SOMETIMES" />
+														<RowConstraints maxHeight="432.0" minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
+														<RowConstraints maxHeight="179.0" minHeight="0.0" prefHeight="59.0" vgrow="SOMETIMES" />
 													</rowConstraints>
 													<children>
 														<ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
@@ -82,8 +82,8 @@
 																<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 															</columnConstraints>
 															<rowConstraints>
-																<RowConstraints maxHeight="168.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
-																<RowConstraints maxHeight="251.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
+																<RowConstraints maxHeight="168.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+																<RowConstraints maxHeight="251.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
 															</rowConstraints>
 															<children>
 																<GridPane>
@@ -131,7 +131,6 @@
 																		<RowConstraints maxHeight="220.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
 																		<RowConstraints maxHeight="220.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
 																		<RowConstraints maxHeight="220.0" minHeight="0.0" prefHeight="27.0" vgrow="SOMETIMES" />
-																		<RowConstraints maxHeight="220.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
 																	</rowConstraints>
 																	<children>
 																		<Separator prefWidth="200.0" valignment="BOTTOM" />
