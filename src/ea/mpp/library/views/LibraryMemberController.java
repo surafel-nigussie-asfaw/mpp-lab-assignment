@@ -118,8 +118,6 @@ public class LibraryMemberController {
 //		      }
 //		   });
 		
-		
-		
 		colStreet.setCellValueFactory(new Callback<CellDataFeatures<LibraryMember, String>, ObservableValue<String>>() {
 		      public ObservableValue<String> call(CellDataFeatures<LibraryMember, String> member) {
 		    	  String val = member.getValue().getPerson().getAddress().getStreet();
