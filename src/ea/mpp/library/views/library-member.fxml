@@ -36,7 +36,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView fx:id="tblLibraryMembers" maxWidth="1.7976931348623157E308" prefHeight="88.0" prefWidth="38.0">
+                  <TableView fx:id="tblLibraryMembers" maxWidth="1.7976931348623157E308" onMouseClicked="#onLibraryMemberSelected" prefHeight="88.0" prefWidth="38.0">
                     <columns>
                       <TableColumn fx:id="colMemberId" prefWidth="44.0" text="ID" />
                       <TableColumn fx:id="colFirstName" prefWidth="100.0" text="First Name" />
@@ -93,17 +93,17 @@
                                        </GridPane.margin>
                                     </Label>
                                     <Label text="Phone Number" GridPane.rowIndex="2" />
-                                    <TextField fx:id="firstName" onInputMethodTextChanged="#onMemberDetailsChangedAction" GridPane.rowIndex="1">
+                                    <TextField fx:id="firstName" onInputMethodTextChanged="#onMemberDetailsChangedAction" onKeyTyped="#onMemberDetailsChangedAction" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="4.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="lastName" onInputMethodTextChanged="#onMemberDetailsChangedAction" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <TextField fx:id="lastName" onKeyTyped="#onMemberDetailsChangedAction" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="4.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="phoneNumber" onInputMethodTextChanged="#onMemberDetailsChangedAction" GridPane.rowIndex="3" />
+                                    <TextField fx:id="phoneNumber" onKeyTyped="#onMemberDetailsChangedAction" GridPane.rowIndex="3" />
                                  </children>
                                  <GridPane.margin>
                                     <Insets right="4.0" />
@@ -124,22 +124,22 @@
                                  <children>
                                     <Separator prefWidth="200.0" valignment="BOTTOM" />
                                     <Label text="Address" GridPane.rowIndex="1" />
-                                    <TextField fx:id="street" onInputMethodTextChanged="#onMemberDetailsChangedAction" promptText="Street Name" GridPane.rowIndex="2" />
+                                    <TextField fx:id="street" onInputMethodTextChanged="#onMemberDetailsChangedAction" onKeyTyped="#onMemberDetailsChangedAction" promptText="Street Name" GridPane.rowIndex="2" />
                                     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                                        <children>
-                                          <TextField fx:id="city" onInputMethodTextChanged="#onMemberDetailsChangedAction" promptText="City">
+                                          <TextField fx:id="city" onInputMethodTextChanged="#onMemberDetailsChangedAction" onKeyTyped="#onMemberDetailsChangedAction" promptText="City">
                                              <HBox.margin>
                                                 <Insets right="4.0" />
                                              </HBox.margin>
                                           </TextField>
-                                          <TextField fx:id="state" onInputMethodTextChanged="#onMemberDetailsChangedAction" prefHeight="27.0" prefWidth="92.0" promptText="State">
+                                          <TextField fx:id="state" onInputMethodTextChanged="#onMemberDetailsChangedAction" onKeyTyped="#onMemberDetailsChangedAction" prefHeight="27.0" prefWidth="92.0" promptText="State">
                                              <HBox.margin>
                                                 <Insets left="4.0" />
                                              </HBox.margin>
                                           </TextField>
                                        </children>
                                     </HBox>
-                                    <TextField fx:id="zipCode" maxWidth="100.0" onInputMethodTextChanged="#onMemberDetailsChangedAction" prefHeight="27.0" prefWidth="100.0" promptText="Zip Code" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="zipCode" maxWidth="100.0" onInputMethodTextChanged="#onMemberDetailsChangedAction" onKeyTyped="#onMemberDetailsChangedAction" prefHeight="27.0" prefWidth="100.0" promptText="Zip Code" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
                            </children>
@@ -161,7 +161,7 @@
                                     <Insets left="8.0" right="8.0" />
                                  </padding>
                               </Separator>
-                              <Button fx:id="btnPrimary" defaultButton="true" disable="true" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSaveMemberAction" prefWidth="100.0" text="Update" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                              <Button fx:id="btnPrimary" defaultButton="true" disable="true" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSaveMemberAction" prefWidth="100.0" text="Save" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                                  <GridPane.margin>
                                     <Insets right="8.0" />
                                  </GridPane.margin>
