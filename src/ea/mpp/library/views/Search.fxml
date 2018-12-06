@@ -18,25 +18,36 @@
       <TextField fx:id="searchTextField" layoutX="39.0" layoutY="65.0" prefHeight="27.0" prefWidth="225.0" promptText="Enter book title" />
       <Label layoutX="40.0" layoutY="141.0" text="Results:" />
       <ListView fx:id="bookListView" layoutX="40.0" layoutY="163.0" prefHeight="370.0" prefWidth="225.0" />
-      <Button fx:id="searchButton" defaultButton="true" layoutX="39.0" layoutY="106.0" mnemonicParsing="false" onAction="#onSearchAction" prefHeight="27.0" prefWidth="225.0" text="Search">
+      <Button fx:id="searchButton" layoutX="39.0" layoutY="106.0" mnemonicParsing="false" onAction="#onSearchAction" prefHeight="27.0" prefWidth="225.0" text="Search">
          <tooltip>
             <Tooltip text="Search for a book using title" />
          </tooltip>
       </Button>
-      <Label fx:id="infoLabel" alignment="TOP_LEFT" layoutX="315.0" layoutY="70.0" prefHeight="462.0" prefWidth="240.0" text="--" wrapText="true">
-         <font>
-            <Font size="36.0" />
-         </font></Label>
+      <Label fx:id="infoLabel" alignment="TOP_LEFT" layoutX="315.0" layoutY="70.0" prefHeight="462.0" prefWidth="240.0" wrapText="true" />
       <Label layoutX="315.0" layoutY="35.0" text="Book Info">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="checkOutButton" layoutX="471.0" layoutY="550.0" mnemonicParsing="false" onAction="#onCheckoutAction" prefHeight="27.0" prefWidth="98.0" text="Checkout">
+      <Button fx:id="checkOutButton" defaultButton="true" layoutX="471.0" layoutY="550.0" mnemonicParsing="false" onAction="#onCheckoutAction" prefHeight="27.0" prefWidth="98.0" text="Checkout">
          <tooltip>
             <Tooltip text="Checkout the selected book" />
          </tooltip>
       </Button>
       <Line endX="500.0" fill="#d72d2d" layoutX="40.0" layoutY="280.0" rotate="-90.0" stroke="#eeeeee" strokeLineCap="ROUND" strokeLineJoin="ROUND" />
+      <MenuBar prefHeight="29.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Quit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onSearchAction" text="Search" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

@@ -34,7 +34,6 @@ public class LoginUIController {
 	@FXML
 	Label errorMessage;
 	
-	
 	private UserController userController = UserController.getInstance();
 	
 	@FXML
@@ -99,7 +98,4 @@ public class LoginUIController {
 		return false;
 	}
 	
-//	public void initSearchBook() {
-//		
-//	}
 }

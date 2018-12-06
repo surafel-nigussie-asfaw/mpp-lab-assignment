@@ -9,6 +9,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -21,9 +22,6 @@ public class Main extends Application {
 		this.primaryStage.setTitle("Library System");
 		initRootLayout();
 		initLogin();
-//		initLibraryMember();
-//
-////		initSearchBook();
 
 	}
 
@@ -70,6 +68,35 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void initAddBook() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("book.fxml"));
+			AnchorPane ap = (AnchorPane)loader.load();
+			root.setCenter(ap);	
+			primaryStage.setResizable(false);
+			primaryStage.setHeight(530);
+			primaryStage.setWidth(607);
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initUpdateBook() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("updateBook.fxml"));
+			AnchorPane ap = (AnchorPane)loader.load();
+			root.setCenter(ap);
+			primaryStage.setResizable(false);
+			primaryStage.setHeight(550);
+			primaryStage.setWidth(900);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
 

@@ -11,6 +11,7 @@ public class BookInfo {
 	private List<BookCopy> bookCopies;
 	private String errorMessage;
 	
+	
 	public BookInfo(int maxLeaseDays, String title, String iSBN) {
 		this(maxLeaseDays, title, iSBN, new ArrayList<>(), new ArrayList<>());
 	}
@@ -107,6 +108,11 @@ public class BookInfo {
 		return count;
 	}
 
+	public int getCopies() {
+		
+		return bookCopies.size();
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

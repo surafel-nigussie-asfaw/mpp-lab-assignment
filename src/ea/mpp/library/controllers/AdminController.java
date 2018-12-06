@@ -12,6 +12,8 @@ public class AdminController {
 
 	BookInfoDAO dataAccess = new BookInfoDAO();
 
+	private static AuthorDAO authorDAO = new AuthorDAO();
+
 	public AdminController() {
 
 	}
@@ -52,55 +54,92 @@ public class AdminController {
 		return member;
 	}
 	
-	/** adding book to the data store
-	 
+	
+	/**
+	 * adding book to the DAO
+	 * 
 	 */
-	public boolean addBook(String title, String isbn, int maxLeaseDays, List<Author> authors, List<BookCopy> copies) {
 
-		if (!dataAccess.bookExists(isbn)) {
-			BookInfo bookInfo = new BookInfo(maxLeaseDays, title, isbn, authors, copies);
-			dataAccess.add(bookInfo);
-			return true;
-		}
+	public boolean addBook(String title, String ISBN, int maxLeaseDays, List<Author> authors, List<BookCopy> copies) {
+
 		
-		return false;
+			if (!dataAccess.exists(ISBN)) {
 
+				BookInfo bookInfo = new BookInfo(maxLeaseDays, title, ISBN, authors, copies);
+
+				dataAccess.add(bookInfo);
+
+				return true;
+			
+			}
+			else {
+
+				return false;
+			}
+		
 	}
 
 	/**
-	 * getting all the books from the data store
+	 * getting all the books from the DAO
+	 * 
 	 * @return
 	 */
 	public List<BookInfo> getBooks() {
 
-//			return dataAccess.getBooks();
-		return null;
+		 return dataAccess.getAll();
+		
 
 	}
 
-	
+	/***
+	 * get a single book by it's title
+	 * 
+	 * @param title
+	 * @return
+	 */
+	public BookInfo getBook(String title) {
+
+		return dataAccess.get(title);
+	}
+
+	/***
+	 * get number of books contained within the DAO
+	 * @return
+	 */
+	public int getBooksCount() {
+
+		return dataAccess.count();
+	}
+
 	/**
 	 * editing an existing book in the store
+	 * 
 	 * @param book
 	 * @return
 	 */
-	public boolean editBook(BookInfo book) {
+	public boolean editBook(String title, String ISBN, int maxLeaseDays, List<Author> authors, List<BookCopy> copies) {
 
-		if (dataAccess.update(book) != null) {
-
-			return true;
+		 for (BookInfo bookInfo : dataAccess.getAll()) {
+			
+			 if(bookInfo.getISBN().equals(ISBN)) {
+				 
+				
+				 BookInfo newBookInfo = new BookInfo(maxLeaseDays,title, ISBN, authors, copies);
+				 dataAccess.update(newBookInfo);
+				 
+				 return true;
+			 }
+			
 		}
-		else
-		{
-			return false;
+		 
+		 return false;
 
-		}
-
+		
 	}
 
-	
 	/**
 	 * add author
+	 * 
 	 * @param author
 	 */
 	public void addAuthor(Author author) {
@@ -109,6 +148,24 @@ public class AdminController {
 //			
 //			authorDAO.add(author);
 
+	}
+
+	/**
+	 * get authors from DAO
+	 */
+	public List<Author> getAuthors() {
+
+		return authorDAO.getAuthors();
+	}
+
+	/**
+	 * Get a single author from the DAO
+	 * @param id
+	 * @return
+	 */
+	public Author getAuthor(String id) {
+
+		return authorDAO.getAuthor(id);
 	}
 
 }
