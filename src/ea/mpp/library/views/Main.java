@@ -13,14 +13,19 @@ public class Main extends Application {
 
 	private BorderPane root;
 	private Stage primaryStage;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Library System");
 		initRootLayout();
+
 		initLogin();
 		
 		//initAddBook();
+
+		initSearchBook();
+
 	}
 
 	public static void main(String[] args) {
@@ -58,9 +63,9 @@ public class Main extends Application {
 	public void initSearchBook() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("Search.fxml"));
-			AnchorPane ap = (AnchorPane)loader.load();
-			root.setCenter(ap);
+			loader.setLocation(SearchUIController.class.getResource("Search.fxml"));
+			AnchorPane anchorPane = (AnchorPane)loader.load();
+			primaryStage.setScene(new Scene(anchorPane));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

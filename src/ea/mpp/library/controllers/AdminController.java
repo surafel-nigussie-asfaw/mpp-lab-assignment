@@ -56,11 +56,10 @@ public class AdminController {
 		return member;
 	}
 	
-
-	/*Steven*/
 	/** adding book to the data store
 	 
 	 */
+
 	public boolean addBook(String title, String ISBN, int maxLeaseDays, List<Author> authors, List<BookCopy> copies) {
 
 	
@@ -78,9 +77,7 @@ public class AdminController {
 			return false;
 		}
 		
-
-	}
-
+}
 	/**
 	 * getting all the books from the data store
 	 * @return
