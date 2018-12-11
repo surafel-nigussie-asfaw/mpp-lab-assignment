@@ -141,11 +141,11 @@ public class LibrarianController {
 	}
 
 	public List<BookDisplay> searchBookByTitle(String text) {
-		return bookInfoDAO.searchBooksByTitle(text)
+		return bookInfoDAO
+				.searchBooksByTitle(text)
 				.stream()
-				.map(bookInfo -> { 
-					return new BookDisplay(bookInfo);
-				}).collect(Collectors.toList());
+				.map(BookDisplay::createFromBookInfo)
+				.collect(Collectors.toList());
 	}
 
 }

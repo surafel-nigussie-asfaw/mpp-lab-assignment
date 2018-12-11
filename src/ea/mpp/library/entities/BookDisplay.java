@@ -5,8 +5,14 @@ public class BookDisplay {
 
 	private BookInfo bookInfo;
 
-	public BookDisplay(BookInfo bookInfo) {
+	private BookDisplay(BookInfo bookInfo) {
 		this.bookInfo = bookInfo;
+	}
+	
+	private BookDisplay() {}
+	
+	public static BookDisplay createFromBookInfo(BookInfo bookInfo) {
+		return new BookDisplay(bookInfo);
 	}
 
 	public String getDisplayText() {
