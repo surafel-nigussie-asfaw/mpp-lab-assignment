@@ -14,15 +14,15 @@ public class UserDAO {
 	
 	public UserDAO() {
 		//only admins roles
-		List<Role> admin = new ArrayList(); 
+		List<Role> admin = new ArrayList<Role>(); 
 		admin.add(new Role(Constants.Roles.ADMINSTRATOR.name()));
 		
 		//only librarian roles
-		List<Role> librarian = new ArrayList(); 
+		List<Role> librarian = new ArrayList<Role>(); 
 		librarian.add(new Role(Constants.Roles.LIBRARIAN.name()));
 		
 		//both roles
-		List<Role> both_admin_librarian = new ArrayList(); 
+		List<Role> both_admin_librarian = new ArrayList<Role>(); 
 		both_admin_librarian.add(new Role(Constants.Roles.ADMINSTRATOR.name()));
 		both_admin_librarian.add(new Role(Constants.Roles.LIBRARIAN.name()));
 		
