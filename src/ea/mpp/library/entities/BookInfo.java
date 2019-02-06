@@ -1,5 +1,6 @@
 package ea.mpp.library.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookInfo {
@@ -10,10 +11,9 @@ public class BookInfo {
 	private List<BookCopy> bookCopies;
 	private String errorMessage;
 	
+	
 	public BookInfo(int maxLeaseDays, String title, String iSBN) {
-		this.maxLeaseDays = maxLeaseDays;
-		this.title = title;
-		this.ISBN = iSBN;
+		this(maxLeaseDays, title, iSBN, new ArrayList<>(), new ArrayList<>());
 	}
 	
 	public BookInfo(int maxLeaseDays, String title, String iSBN, List<Author> authors, List<BookCopy> bookCopies) {
@@ -106,5 +106,25 @@ public class BookInfo {
 				count++;
 		}
 		return count;
+	}
+
+	public int getCopies() {
+		
+		return bookCopies.size();
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Title: ").append(title)
+		.append("\nISBN: ").append(ISBN)
+		.append("\nAuthor").append(authors.isEmpty() ? "" : "s").append(":");
+		
+		authors.forEach(author -> { builder.append("\n").append(author.toString()).append("\n"); });
+		
+		builder.append("\nCopies: ").append(bookCopies.size());
+		
+		return builder.toString();
+
 	}
 }

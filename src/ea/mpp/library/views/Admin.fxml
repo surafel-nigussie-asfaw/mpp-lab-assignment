@@ -1,29 +1,391 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="494.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.AdminUIController">
-   <children>
-      <TabPane layoutY="25.0" prefHeight="469.0" prefWidth="601.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Add Edit Book">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-          <Tab text="Add Edit Member">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-      <Button layoutX="547.0" layoutY="2.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
-      <Label fx:id="welcome" layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="119.0" />
-      <Button fx:id="goToLibButon" layoutX="388.0" mnemonicParsing="false" onAction="#goToLib" text="Go To Librerian Window" visible="false" />
-   </children>
+<AnchorPane prefHeight="494.0" prefWidth="748.0" style="-fx-background-color: #E3F2FD;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ea.mpp.library.views.AdminUIController">
+	<children>
+		<TabPane layoutY="25.0" prefHeight="530.0" prefWidth="748.0" tabClosingPolicy="UNAVAILABLE">
+			<tabs>
+				<Tab text="Library Members">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="469.0" prefWidth="601.0">
+							<children>
+								<GridPane prefHeight="613.0" prefWidth="885.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="273.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+										<GridPane prefHeight="357.0" prefWidth="682.0" GridPane.rowIndex="1">
+											<columnConstraints>
+												<ColumnConstraints hgrow="SOMETIMES" maxWidth="662.0" minWidth="10.0" prefWidth="624.0" />
+												<ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="261.0" />
+											</columnConstraints>
+											<rowConstraints>
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+											</rowConstraints>
+											<children>
+												<TableView fx:id="tblLibraryMembers" maxWidth="1.7976931348623157E308" onMouseClicked="#onLibraryMemberSelected" prefHeight="88.0" prefWidth="38.0">
+													<columns>
+														<TableColumn fx:id="colMemberId" prefWidth="44.0" text="ID" />
+														<TableColumn fx:id="colFirstName" prefWidth="100.0" text="First Name" />
+														<TableColumn fx:id="colLastName" prefWidth="130.0" text="Last Name" />
+														<TableColumn fx:id="colStreet" prefWidth="111.0" text="Street" />
+														<TableColumn fx:id="colCity" minWidth="0.0" prefWidth="71.0" text="City" />
+														<TableColumn fx:id="colState" prefWidth="105.0" text="State" />
+														<TableColumn fx:id="colZip" prefWidth="61.0" text="Zip" />
+													</columns>
+													<GridPane.margin>
+														<Insets bottom="8.0" />
+													</GridPane.margin>
+												</TableView>
+												<GridPane GridPane.columnIndex="1">
+													<columnConstraints>
+														<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+													</columnConstraints>
+													<rowConstraints>
+														<RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="144.0" vgrow="SOMETIMES" />
+														<RowConstraints maxHeight="432.0" minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
+														<RowConstraints maxHeight="179.0" minHeight="0.0" prefHeight="59.0" vgrow="SOMETIMES" />
+													</rowConstraints>
+													<children>
+														<ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+															<image>
+																<Image url="@../../../../images/member-profile.png" />
+															</image>
+														</ImageView>
+														<GridPane GridPane.rowIndex="1">
+															<columnConstraints>
+																<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+															</columnConstraints>
+															<rowConstraints>
+																<RowConstraints maxHeight="168.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+																<RowConstraints maxHeight="251.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+															</rowConstraints>
+															<children>
+																<GridPane>
+																	<columnConstraints>
+																		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+																		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+																	</columnConstraints>
+																	<rowConstraints>
+																		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+																		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+																		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+																		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+																	</rowConstraints>
+																	<children>
+																		<Label text="First Name" />
+																		<Label text="Last Name" GridPane.columnIndex="1">
+																			<GridPane.margin>
+																				<Insets left="4.0" />
+																			</GridPane.margin>
+																		</Label>
+																		<Label text="Phone Number" GridPane.rowIndex="2" />
+																		<TextField fx:id="firstName" onInputMethodTextChanged="#onMemberDetailsChangedAction" onKeyTyped="#onMemberDetailsChangedAction" GridPane.rowIndex="1">
+																			<GridPane.margin>
+																				<Insets right="4.0" />
+																			</GridPane.margin>
+																		</TextField>
+																		<TextField fx:id="lastName" onKeyTyped="#onMemberDetailsChangedAction" GridPane.columnIndex="1" GridPane.rowIndex="1">
+																			<GridPane.margin>
+																				<Insets left="4.0" />
+																			</GridPane.margin>
+																		</TextField>
+																		<TextField fx:id="phoneNumber" onKeyTyped="#onMemberDetailsChangedAction" GridPane.rowIndex="3" />
+																	</children>
+																	<GridPane.margin>
+																		<Insets right="4.0" />
+																	</GridPane.margin>
+																</GridPane>
+																<GridPane prefHeight="210.0" prefWidth="241.0" GridPane.rowIndex="1">
+																	<columnConstraints>
+																		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+																	</columnConstraints>
+																	<rowConstraints>
+																		<RowConstraints maxHeight="78.0" minHeight="0.0" prefHeight="26.0" vgrow="SOMETIMES" />
+																		<RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="21.0" vgrow="SOMETIMES" />
+																		<RowConstraints maxHeight="220.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
+																		<RowConstraints maxHeight="220.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
+																		<RowConstraints maxHeight="220.0" minHeight="0.0" prefHeight="27.0" vgrow="SOMETIMES" />
+																	</rowConstraints>
+																	<children>
+																		<Separator prefWidth="200.0" valignment="BOTTOM" />
+																		<Label text="Address" GridPane.rowIndex="1" />
+																		<TextField fx:id="street" onInputMethodTextChanged="#onMemberDetailsChangedAction" onKeyTyped="#onMemberDetailsChangedAction" promptText="Street Name" GridPane.rowIndex="2" />
+																		<HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+																			<children>
+																				<TextField fx:id="city" onInputMethodTextChanged="#onMemberDetailsChangedAction" onKeyTyped="#onMemberDetailsChangedAction" promptText="City">
+																					<HBox.margin>
+																						<Insets right="4.0" />
+																					</HBox.margin>
+																				</TextField>
+																				<TextField fx:id="state" onInputMethodTextChanged="#onMemberDetailsChangedAction" onKeyTyped="#onMemberDetailsChangedAction" prefHeight="27.0" prefWidth="92.0" promptText="State">
+																					<HBox.margin>
+																						<Insets left="4.0" />
+																					</HBox.margin>
+																				</TextField>
+																			</children>
+																		</HBox>
+																		<TextField fx:id="zipCode" maxWidth="100.0" onInputMethodTextChanged="#onMemberDetailsChangedAction" onKeyTyped="#onMemberDetailsChangedAction" prefHeight="27.0" prefWidth="100.0" promptText="Zip Code" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+																	</children>
+																</GridPane>
+															</children>
+															<padding>
+																<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+															</padding>
+														</GridPane>
+														<GridPane GridPane.rowIndex="2">
+															<columnConstraints>
+																<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+															</columnConstraints>
+															<rowConstraints>
+																<RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="21.0" vgrow="SOMETIMES" />
+																<RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+															</rowConstraints>
+															<children>
+																<Separator prefWidth="200.0" GridPane.valignment="BOTTOM">
+																	<padding>
+																		<Insets left="8.0" right="8.0" />
+																	</padding>
+																</Separator>
+																<Button fx:id="btnPrimary" defaultButton="true" disable="true" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSaveMemberAction" prefWidth="100.0" text="Save" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+																	<GridPane.margin>
+																		<Insets right="8.0" />
+																	</GridPane.margin>
+																</Button>
+															</children>
+														</GridPane>
+													</children>
+												</GridPane>
+											</children>
+											<padding>
+												<Insets left="8.0" />
+											</padding>
+										</GridPane>
+										<GridPane>
+											<columnConstraints>
+												<ColumnConstraints hgrow="SOMETIMES" maxWidth="630.0" minWidth="10.0" prefWidth="628.0" />
+												<ColumnConstraints hgrow="SOMETIMES" maxWidth="454.0" minWidth="10.0" prefWidth="257.0" />
+											</columnConstraints>
+											<rowConstraints>
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+											</rowConstraints>
+											<children>
+												<Label text="Library Members">
+													<GridPane.margin>
+														<Insets left="8.0" />
+													</GridPane.margin>
+													<font>
+														<Font size="24.0" />
+													</font>
+												</Label>
+												<Button fx:id="btnCreateMember" maxWidth="160.0" minWidth="160.0" mnemonicParsing="false" onAction="#onCreateMemberAction" prefWidth="160.0" text="Create New Member" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+													<GridPane.margin>
+														<Insets right="8.0" />
+													</GridPane.margin>
+												</Button>
+											</children>
+										</GridPane>
+									</children>
+								</GridPane>
+							</children>
+
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="Add Book">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="607.0">
+							<children>
+								<AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="653.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+									<children>
+										<BorderPane prefHeight="499.0" prefWidth="653.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+											<bottom>
+												<HBox alignment="CENTER_RIGHT" disable="false" fillHeight="true" prefHeight="54.009999999999984" prefWidth="223.0" spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
+													<children>
+														<Button fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" text="Cancel" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+														<Button id="nextButton" fx:id="createButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createButtonClick" prefHeight="41.0" prefWidth="118.0" text="Create" textAlignment="LEFT" HBox.hgrow="ALWAYS" />
+													</children>
+													<BorderPane.margin>
+														<Insets right="10.0" />
+													</BorderPane.margin>
+												</HBox>
+											</bottom>
+											<center>
+												<Pane prefHeight="410.0" prefWidth="453.0">
+													<children>
+														<VBox layoutX="21.0" layoutY="67.0" prefHeight="341.0" prefWidth="312.0">
+															<children>
+																<Pane prefHeight="66.0" prefWidth="312.0">
+																	<children>
+																		<TextField fx:id="titleField" layoutX="11.0" layoutY="30.0" prefHeight="31.0" prefWidth="293.0" />
+																		<Label layoutX="7.0" layoutY="9.0" prefWidth="64.0" text="Title" />
+																	</children>
+																</Pane>
+																<Pane prefHeight="66.0" prefWidth="312.0">
+																	<children>
+																		<TextField fx:id="ISBNField" layoutX="7.0" layoutY="27.0" prefHeight="31.0" prefWidth="296.0" />
+																		<Label layoutX="7.0" layoutY="6.0" text="ISBN" />
+																	</children>
+																</Pane>
+																<Pane prefHeight="66.0" prefWidth="312.0">
+																	<children>
+																		<Label layoutX="7.0" layoutY="6.0" text="Author" />
+																		<ComboBox fx:id="authorCombo" layoutX="7.0" layoutY="27.0" onAction="#onAuthorSelect" prefHeight="31.0" prefWidth="290.0" />
+																	</children>
+																</Pane>
+																<Pane prefHeight="66.0" prefWidth="312.0">
+																	<children>
+																		<Label layoutX="7.0" layoutY="6.0" text="Lease days" />
+																		<ComboBox fx:id="leasedaysCombo" layoutX="7.0" layoutY="27.0" prefHeight="31.0" prefWidth="81.0" />
+																	</children>
+																</Pane>
+																<Pane prefHeight="55.0" prefWidth="312.0">
+																	<children>
+																		<Label layoutX="7.0" layoutY="5.0" text="Copies" />
+																		<TextField fx:id="copiesField" layoutX="7.0" layoutY="26.0" prefHeight="28.9609375" prefWidth="79.0" />
+																	</children>
+																</Pane>
+															</children>
+														</VBox>
+														<Label layoutX="27.0" layoutY="23.0" text="Book">
+															<font>
+																<Font size="30.0" />
+															</font>
+														</Label>
+													</children>
+													<padding>
+														<Insets fx:id="x1" />
+													</padding>
+												</Pane>
+											</center>
+											<right>
+												<Pane prefHeight="444.0" prefWidth="277.0" />
+											</right>
+										</BorderPane>
+									</children>
+								</AnchorPane>
+							</children>
+
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="Edit Book">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="607.0">
+							<children>
+								<AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="653.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+									<children>
+										<BorderPane prefHeight="499.0" prefWidth="653.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+											<bottom>
+												<HBox alignment="CENTER_RIGHT" disable="false" fillHeight="true" prefHeight="54.009999999999984" prefWidth="223.0" spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
+													<children>
+														<Button id="nextButton" fx:id="updateButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateBook" prefHeight="41.0" prefWidth="118.0" text="Update" textAlignment="LEFT" HBox.hgrow="ALWAYS" />
+													</children>
+													<BorderPane.margin>
+														<Insets right="10.0" />
+													</BorderPane.margin>
+												</HBox>
+											</bottom>
+											<center>
+												<Pane prefHeight="444.0" prefWidth="488.0">
+													<children>
+														<VBox layoutX="21.0" layoutY="67.0" prefHeight="341.0" prefWidth="312.0">
+															<children>
+																<Pane prefHeight="66.0" prefWidth="312.0">
+																	<children>
+																		<TextField fx:id="titleField2" layoutX="11.0" layoutY="30.0" prefHeight="31.0" prefWidth="187.0" />
+																		<Label layoutX="7.0" layoutY="9.0" prefWidth="64.0" text="Title" />
+																	</children>
+																</Pane>
+																<Pane prefHeight="66.0" prefWidth="312.0">
+																	<children>
+																		<TextField fx:id="ISBNField2" disable="true" layoutX="7.0" layoutY="27.0" prefHeight="31.0" prefWidth="192.0" />
+																		<Label layoutX="7.0" layoutY="6.0" text="ISBN" />
+																	</children>
+																</Pane>
+																<Pane prefHeight="66.0" prefWidth="312.0">
+																	<children>
+																		<Label layoutX="7.0" layoutY="6.0" text="Author" />
+																		<ComboBox fx:id="authorCombo2" layoutX="7.0" layoutY="27.0" onAction="#onAuthorSelect" prefHeight="31.0" prefWidth="192.0" />
+																	</children>
+																</Pane>
+																<Pane prefHeight="66.0" prefWidth="312.0">
+																	<children>
+																		<Label layoutX="7.0" layoutY="6.0" text="Lease days" />
+																		<ComboBox fx:id="leasedaysCombo2" layoutX="7.0" layoutY="27.0" prefHeight="31.0" prefWidth="81.0" />
+																	</children>
+																</Pane>
+																<Pane prefHeight="55.0" prefWidth="312.0">
+																	<children>
+																		<Label layoutX="7.0" layoutY="5.0" text="Copies" />
+																		<TextField fx:id="copiesField2" layoutX="7.0" layoutY="26.0" prefHeight="28.9609375" prefWidth="79.0" />
+																	</children>
+																</Pane>
+															</children>
+														</VBox>
+														<Label layoutX="27.0" layoutY="23.0" text="Book">
+															<font>
+																<Font size="30.0" />
+															</font>
+														</Label>
+													</children>
+													<padding>
+														<Insets fx:id="x1" />
+													</padding>
+												</Pane>
+											</center>
+											<right>
+												<Pane prefHeight="444.0" prefWidth="493.0">
+													<children>
+														<TableView fx:id="booksView" layoutY="76.0" prefHeight="345.0" prefWidth="486.0">
+															<columns>
+																<TableColumn prefWidth="30.0" text="#" />
+																<TableColumn fx:id="dataTitleColumn" prefWidth="190.0" text="Title" />
+																<TableColumn prefWidth="196.0" text="ISBN" />
+																<TableColumn prefWidth="69.0" text="Copies" />
+															</columns>
+														</TableView>
+														<Label layoutY="55.0" text="Double click book to edit" />
+													</children>
+												</Pane>
+											</right>
+										</BorderPane>
+									</children>
+								</AnchorPane>
+							</children>
+
+						</AnchorPane>
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+		<Button layoutX="694.0" layoutY="2.0" mnemonicParsing="false" onAction="#Logout" text="Logout" />
+		<Label fx:id="welcome" layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="119.0" />
+		<Button fx:id="goToLibButon" layoutX="388.0" mnemonicParsing="false" onAction="#goToLib" text="Go To Librerian Window" visible="false" />
+	</children>
 </AnchorPane>
