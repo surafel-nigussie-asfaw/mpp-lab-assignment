@@ -13,11 +13,8 @@ import ea.mpp.library.entities.BookInfo;
 import ea.mpp.library.entities.Person;
 import ea.mpp.library.entities.Address;
 
-<<<<<<< HEAD
-public class BookInfoDAO {
-	private Map<String, BookInfo> bookInfoDataMap = new HashMap<String, BookInfo>();
 
-=======
+
 public class BookInfoDAO 
 {
 
@@ -32,7 +29,7 @@ public class BookInfoDAO
 		}
 	};
 	
->>>>>>> ff90c998f1147a7a01dc42fcc3702e190fb4da58
+
 	public BookInfoDAO() {
 		List<Author> authors = new ArrayList<>();
 		authors.add(new Author("creds tom", "bio tom", new Person("tom", "robert", "9798798")));
@@ -45,15 +42,12 @@ public class BookInfoDAO
 
 		bookInfoDataMap.put("isbn", new BookInfo(10, "the love", "isbn", authors, bookcopies));
 	}
-<<<<<<< HEAD
 
-	public BookInfo add(String iSBN, BookInfo value) {
-		return bookInfoDataMap.put(iSBN, value);
-=======
+
 	
 	public BookInfo add(BookInfo value) {
 		return bookInfoDataMap.put(value.getISBN(), value);
->>>>>>> ff90c998f1147a7a01dc42fcc3702e190fb4da58
+
 	}
 
 	public BookInfo update(BookInfo value) {
@@ -80,18 +74,7 @@ public class BookInfoDAO
 	public BookInfo delete(String iSBN) {
 		return bookInfoDataMap.remove(iSBN);
 	}
-<<<<<<< HEAD
 
-//	public List<BookInfo> search(String key) {
-//		List<BookInfo> result = new ArrayList<BookInfo>();
-//		for(Map<String, BookInfo> books: bookInfoDataMap )
-//
-//		if (bookInfoDataMap.containsKey(key)) {
-//			bookcopies.add(bookInfoDataMap.get(key));
-//		}
-//
-//	}
-=======
 	
 	public List<BookInfo> searchBooksByTitle(String text) {
 
@@ -135,5 +118,5 @@ public class BookInfoDAO
 		return bookInfoDataMap.size();
 	}
 	
->>>>>>> ff90c998f1147a7a01dc42fcc3702e190fb4da58
+
 }
