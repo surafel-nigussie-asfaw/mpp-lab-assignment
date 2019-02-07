@@ -32,7 +32,7 @@
          </font>
       </Label>
       <Line endX="87.0" endY="181.0" layoutX="175.0" layoutY="77.0" startX="87.0" startY="3.0" stroke="#fcf7f7" />
-      <Label layoutX="62.0" layoutY="99.0" prefHeight="158.0" prefWidth="173.0" text="Welcome To Library System" textAlignment="CENTER" textFill="#1e0606" wrapText="true">
+      <Label layoutX="62.0" layoutY="99.0" prefHeight="158.0" prefWidth="173.0" text="Welcome To Library System" textAlignment="CENTER" textFill="#dacccc" wrapText="true">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
